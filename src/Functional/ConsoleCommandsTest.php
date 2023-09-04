@@ -46,7 +46,7 @@ trait ConsoleCommandsTest
     {
         service(ConfigManager::class)->setValue(
             service(OptionController::class)->getPath(service(EntityDirectory::class)),
-            'var/migrations'
+            __DIR__ . '/../Entities/Migrations'
         );
     }
 
