@@ -1,4 +1,4 @@
-env: dev
+env: test
 
 storage:
   pdo:
@@ -6,7 +6,6 @@ storage:
     username: $env(DB_PDO_USERNAME)
     password: $env(DB_PDO_PASSWORD)
   migration-directory: tests/Migrations
-  entity-directory: tests/MockUps
 
 php-formatter:
   validator:
