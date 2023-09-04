@@ -12,6 +12,12 @@
     "prefer-stable": true,
     "require": {
         "morphp/medas-core": "dev-dev",
+        "morphp/medas-config-manager": "dev-dev",
+        "morphp/medas-config-options": "dev-dev",
+        "morphp/medas-console-printer": "dev-dev",
+        "morphp/medas-entity-manager": "dev-dev",
+        "morphp/medas-events": "dev-dev",
+        "morphp/medas-ramsey-uuid-bridge": "dev-dev",
         "morphp/medas-storage-manager": "dev-dev"
     },
     "require-dev": {
@@ -20,8 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Medas\\StorageManagerTests\\": "src/",
-            "Medas\\StorageManagerTestsTest\\": "tests/"
+            "Medas\\StorageManagerTests\\": "src/"
         }
     }
 }

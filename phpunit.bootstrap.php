@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Medas\StorageManagerTests\StorageManagerTestsPackage;
 use Medas\ServiceManager\{ServiceConfig, ServiceManager};
+use Medas\StorageManagerTests\StorageManagerTestsPackage;
 
 chdir(__DIR__);
 
