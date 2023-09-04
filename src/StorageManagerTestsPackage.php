@@ -21,6 +21,7 @@ class StorageManagerTestsPackage extends BasePackage
     public function dependencies(): array
     {
         return [
+
             ConfigManagerPackage::instance(),
             ConfigOptionsPackage::instance(),
             ConsolePrinterPackage::instance(),
