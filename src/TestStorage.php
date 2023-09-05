@@ -18,10 +18,12 @@ trait TestStorage
     protected function createMigrationClassContent(string $directory): string|null
     {
         $buildManager = service(MigrationBuildManager::class);
-        $realDirectory = realpath(__DIR__ . '/Entities/' . $directory);
+        $path = __DIR__ . '/Entities/' . $directory;
+
+        $realDirectory = realpath($path);
 
         if ($realDirectory === false) {
-            throw new \Exception('directory "' . __DIR__ . '/../MockUps/' . $directory . '" does not exist');
+            throw new \Exception('directory "' . $path . '" does not exist');
         }
 
         return $buildManager->createMigrationClass($realDirectory);
