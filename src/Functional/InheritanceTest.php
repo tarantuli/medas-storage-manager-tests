@@ -8,7 +8,7 @@ use Medas\EntityManager\Repository;
 use Medas\StorageManagerTests\Entities\{Inheritence\ArmorCard, Inheritence\Card, Inheritence\WeaponCard, MockUpIds};
 use Medas\StorageManagerTests\TestStorage;
 
-trait InheritenceTest
+trait InheritanceTest
 {
     use TestStorage;
 
@@ -16,7 +16,7 @@ trait InheritenceTest
     {
         $this->controller()->deleteStore($this->store('i_weapon_cards'));
         $this->controller()->deleteStore($this->store('i_armor_cards'));
-        $this->controller()->deleteStore($this->store('i_cards__original_entity_class'));
+        $this->controller()->deleteStore($this->store('i_cards__original_class'));
         $this->controller()->deleteStore($this->store('i_cards'));
 
         $migration = $this->createMigrationClassContent('Inheritence');

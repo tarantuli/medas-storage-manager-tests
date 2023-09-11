@@ -14,7 +14,7 @@ trait AllTests
     use HandledPropertyTest;
     use GuidTest;
     use HydratorTest;
-    use InheritenceTest;
+    use InheritanceTest;
     use ManyToManyRelationTest;
     use OneToManyRelationTest;
     use PropertyHandlerTest;
