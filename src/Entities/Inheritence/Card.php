@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Entities\Inheritence;
 
 use Medas\Core\Interfaces\HasId;
-use Medas\EntityManager\Attributes\{Entity, Id, IsGeneratedValue, IsUnique};
+use Medas\EntityManager\Attributes\{Entity, Id, IsGeneratedValue, IsUnique, StoreOriginalEntityType};
 
-#[Entity('i_cards')]
+#[Entity('i_cards'), StoreOriginalEntityType]
 class Card implements HasId
 {
     #[Id, IsGeneratedValue]

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Functional;
 
 use Medas\EntityManager\Repository;
-use Medas\StorageManagerTests\Entities\{Inheritence\ArmorCard, Inheritence\WeaponCard, MockUpIds};
+use Medas\StorageManagerTests\Entities\{Inheritence\ArmorCard, Inheritence\Card, Inheritence\WeaponCard, MockUpIds};
 use Medas\StorageManagerTests\TestStorage;
 
 trait InheritenceTest
@@ -16,6 +16,7 @@ trait InheritenceTest
     {
         $this->controller()->deleteStore($this->store('i_weapon_cards'));
         $this->controller()->deleteStore($this->store('i_armor_cards'));
+        $this->controller()->deleteStore($this->store('i_cards__original_entity_class'));
         $this->controller()->deleteStore($this->store('i_cards'));
 
         $migration = $this->createMigrationClassContent('Inheritence');
@@ -62,14 +63,14 @@ trait InheritenceTest
         self::assertCount(1, $armorCards);
         self::assertEquals($ids->armorId, $armorCards[0]->id());
     }
-    /*
-        /** @depends testStoring * /
-        public function testRetrievingByParent(MockUpIds $ids): void
-        {
-            $weapon = em()->get(Card::class, $ids->weaponId);
-            $armor = em()->get(Card::class, $ids->armorId);
 
-            self::assertInstanceOf(WeaponCard::class, $weapon);
-            self::assertInstanceOf(ArmorCard::class, $armor);
-     }*/
+    /** @depends testStoring */
+    public function testRetrievingByParent(MockUpIds $ids): void
+    {
+        $weapon = em()->get(Card::class, $ids->weaponId);
+        $armor = em()->get(Card::class, $ids->armorId);
+
+        self::assertInstanceOf(WeaponCard::class, $weapon);
+        self::assertInstanceOf(ArmorCard::class, $armor);
+    }
 }
