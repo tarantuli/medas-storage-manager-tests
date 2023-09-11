@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
-use Medas\StorageManagerTests\Entities\PropertyHandlers\{EntityWithHandler, PropertyClass};
 use Medas\StorageManagerTests\Entities\Relations\{Group, Person};
 use Medas\StorageManagerTests\TestStorage;
 
@@ -52,7 +51,7 @@ trait UnsortedTest
 
         $this->controller()->actionExecutor()->executeSet($action);
 
-        self::assertFalse($action->recordSet()->hasRecords());
+        self::assertFalse($action->lastRecordSet->hasRecords());
 
         $action = $this->controller()->actionBuilders()->insert()->build(
             $this->store('r_people'),
@@ -61,7 +60,7 @@ trait UnsortedTest
 
         $this->controller()->actionExecutor()->executeSet($action);
 
-        self::assertFalse($action->recordSet()->hasRecords());
+        self::assertFalse($action->lastRecordSet->hasRecords());
     }
 
     /**
@@ -110,25 +109,6 @@ trait UnsortedTest
     public function testFetchRelation(Person $person): void
     {
         self::assertInstanceOf(Group::class, em()->get(Person::class, $person->id())->group());
-    }
-
-    public function testStoreHandledPRoperty(): void
-    {
-        $this->controller()->deleteStore($this->store('entities_with_handler'));
-
-        // Ensure storage existence
-        $migration = $this->createMigrationClassContent('PropertyHandlers');
-        $this->executeMigration($migration);
-
-        $entity = em()->create(EntityWithHandler::class, ['propertyClass' => new PropertyClass(1, 10)]);
-        em()->persist($entity);
-        em()->flush();
-        em()->clear();
-
-        // Fetch it again
-        $refetchedEntity = em()->get(EntityWithHandler::class, $entity->guid);
-
-        self::assertEquals(1, $refetchedEntity->propertyClass->min);
     }
 
     protected function migrationAssertions(string $migration): void

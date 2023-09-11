@@ -11,6 +11,7 @@ trait AllTests
     use DatabaseManagerTest;
     use EntityPersisterTest;
     use EnumTest;
+    use HandledPropertyTest;
     use GuidTest;
     use HydratorTest;
     use InheritenceTest;
