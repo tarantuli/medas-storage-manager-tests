@@ -6,7 +6,8 @@ namespace Medas\StorageManagerTests\Functional;
 
 use Medas\ConfigOptions\OptionController;
 use Medas\Core\Interfaces\ConfigManager;
-use Medas\StorageManager\ConfigOptions\{EntityDirectory, MigrationDirectory};
+use Medas\EntityManager\ConfigOptions\EntityDirectories;
+use Medas\StorageManager\ConfigOptions\MigrationDirectory;
 use Medas\StorageManager\ConsoleCommands\{MakeMigrationCommand, MigrateCommand};
 use Medas\StorageManager\Migrations\MigrationManager;
 use Medas\StorageManagerTests\TestStorage;
@@ -45,7 +46,7 @@ trait ConsoleCommandsTest
     private function setMigrationEntityDirectory(): void
     {
         service(ConfigManager::class)->setValue(
-            service(OptionController::class)->getPath(service(EntityDirectory::class)),
+            service(OptionController::class)->getPath(service(EntityDirectories::class)),
             __DIR__ . '/../Entities/Migrations'
         );
     }

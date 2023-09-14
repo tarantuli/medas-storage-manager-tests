@@ -26,7 +26,7 @@ trait TestStorage
             throw new \Exception('directory "' . $path . '" does not exist');
         }
 
-        return $buildManager->createMigrationClass($realDirectory);
+        return $buildManager->createMigrationClass([$realDirectory]);
     }
 
     protected function executeMigration(string $migration): void
