@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Functional;
 
 use Medas\EntityManager\Repository;
-use Medas\StorageManagerTests\Entities\{Inheritence\ArmorCard, Inheritence\Card, Inheritence\WeaponCard, MockUpIds};
+use Medas\StorageManagerTests\Entities\{Inheritance\ArmorCard, Inheritance\Card, Inheritance\WeaponCard, MockUpIds};
 use Medas\StorageManagerTests\TestStorage;
 
 trait InheritanceTest
@@ -19,7 +19,7 @@ trait InheritanceTest
         $this->controller()->deleteStore($this->store('i_cards__original_class'));
         $this->controller()->deleteStore($this->store('i_cards'));
 
-        $migration = $this->createMigrationClassContent('Inheritence');
+        $migration = $this->createMigrationClassContent('Inheritance');
 
         self::assertStringContainsString('class Migration', $migration);
         $this->executeMigration($migration);
