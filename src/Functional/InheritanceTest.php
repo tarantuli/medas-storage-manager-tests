@@ -12,7 +12,7 @@ trait InheritanceTest
 {
     use TestStorage;
 
-    public function testCreateMigration(): void
+    public function testInhCreateMigration(): void
     {
         $this->controller()->deleteStore($this->store('i_weapon_cards'));
         $this->controller()->deleteStore($this->store('i_armor_cards'));
@@ -25,8 +25,8 @@ trait InheritanceTest
         $this->executeMigration($migration);
     }
 
-    /** @depends testCreateMigration */
-    public function testStoring(): MockUpIds
+    /** @depends testInhCreateMigration */
+    public function testInhStoring(): MockUpIds
     {
         em()->autoPersistOnCreate();
 
@@ -55,8 +55,8 @@ trait InheritanceTest
         return new MockUpIds($weaponId, $armorId);
     }
 
-    /** @depends testStoring */
-    public function testRetrievingByChildClass(MockUpIds $ids): void
+    /** @depends testInhStoring */
+    public function testInhRetrievingByChildClass(MockUpIds $ids): void
     {
         $armorCards = service(Repository::class)->fetchAll(ArmorCard::class);
 
@@ -64,8 +64,8 @@ trait InheritanceTest
         self::assertEquals($ids->armorId, $armorCards[0]->id());
     }
 
-    /** @depends testStoring */
-    public function testRetrievingByParent(MockUpIds $ids): void
+    /** @depends testInhStoring */
+    public function testInhRetrievingByParent(MockUpIds $ids): void
     {
         $weapon = em()->get(Card::class, $ids->weaponId);
         $armor = em()->get(Card::class, $ids->armorId);

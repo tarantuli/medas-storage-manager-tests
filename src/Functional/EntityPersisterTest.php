@@ -14,7 +14,17 @@ trait EntityPersisterTest
 {
     use TestStorage;
 
-    public function testCreateAndFetch(): void
+    public function testEpCreateMigration(): void
+    {
+        $this->controller()->deleteStore($this->store('stored_entities'));
+
+        $migration = $this->createMigrationClassContent('Migrations');
+
+        self::assertStringContainsString('class Migration', $migration);
+        $this->executeMigration($migration);
+    }
+
+    public function testEpCreateAndFetch(): void
     {
         $entity = new StoredEntity();
         $entity->name = $newName = (string) mt_rand();
@@ -35,7 +45,7 @@ trait EntityPersisterTest
         self::assertEquals($newName, $entity->name);
     }
 
-    public function testCreateIsIdFilled(): void
+    public function testEpCreateIsIdFilled(): void
     {
         $entity = new StoredEntity();
         $entity->name = $newName = (string) mt_rand();
@@ -49,7 +59,7 @@ trait EntityPersisterTest
         self::assertEquals($newName, $entity->name);
     }
 
-    public function testUpdate(): void
+    public function testEpUpdate(): void
     {
         $entity = em()->get(StoredEntity::class, 1);
         $entity->name = $newName = (string) mt_rand();
@@ -62,7 +72,7 @@ trait EntityPersisterTest
         self::assertEquals($newName, $entity->name);
     }
 
-    public function testDelete(): void
+    public function testEpDelete(): void
     {
         // Create and persist a new entity
         $storedEntity = em()->create(StoredEntity::class, ['name' => (string) mt_rand()]);
@@ -91,7 +101,7 @@ trait EntityPersisterTest
         self::assertNull($fetchedEntity);
     }
 
-    public function testCreateAndFetchWithValues(): void
+    public function testEpCreateAndFetchWithValues(): void
     {
         $entity = new StoredEntity();
         $entity->name = $newName = (string) mt_rand();
