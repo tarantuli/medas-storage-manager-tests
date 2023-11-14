@@ -20,6 +20,7 @@ trait ManyToManyRelationTest
         $migration = $this->createMigrationClassContent('ManyToMany');
 
         self::assertStringContainsString('class Migration', $migration);
+
         $this->executeMigration($migration);
     }
 
@@ -30,9 +31,7 @@ trait ManyToManyRelationTest
 
         $label1 = em()->create(Label::class, ['name' => 'label 1']);
         $label2 = em()->create(Label::class, ['name' => 'label 2']);
-
         $book = em()->create(Book::class, ['labels' => new Labels(fn() => [$label1, $label2])]);
-
         $label1Id = $label1->id();
         $bookId = $book->id();
 
@@ -60,6 +59,7 @@ trait ManyToManyRelationTest
         em()->clear();
 
         $book = em()->get(Book::class, $book->id());
+
         self::assertEquals(3, $book->labels->count());
 
         return $book;
@@ -76,6 +76,7 @@ trait ManyToManyRelationTest
         em()->clear();
 
         $book = em()->get(Book::class, $book->id());
+
         self::assertEquals(2, $book->labels->count());
 
         return $book;
@@ -87,15 +88,17 @@ trait ManyToManyRelationTest
         em()->autoPersistOnCreate();
 
         $label4 = em()->create(Label::class, ['name' => 'label 4']);
+
         unset($book->labels[0]);
+
         $book->labels[] = $label4;
 
         em()->clear();
 
         $book = em()->get(Book::class, $book->id());
+
         self::assertEquals(2, $book->labels->count());
 
         return $book;
     }
-
 }

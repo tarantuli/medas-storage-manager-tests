@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
-use Medas\StorageManager\Interfaces\Store;
 use Medas\StorageManagerTests\TestStorage;
+use Medas\StorageManager\Interfaces\Store;
 
 trait PropertyHandlerTest
 {

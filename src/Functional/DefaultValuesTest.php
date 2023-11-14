@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
-use Medas\StorageManager\Structure\{Blueprint, EntityStructureFinder};
 use Medas\StorageManagerTests\Entities\Structure\EntityWithDefaultValues;
 use Medas\StorageManagerTests\TestStorage;
+use Medas\StorageManager\Structure\{Blueprint, EntityStructureFinder};
 
 trait DefaultValuesTest
 {

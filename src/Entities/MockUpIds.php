@@ -9,7 +9,6 @@ readonly class MockUpIds
     public function __construct(
         public int $weaponId,
         public int $armorId,
-
     )
     {
     }

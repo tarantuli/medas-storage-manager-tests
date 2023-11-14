@@ -22,6 +22,7 @@ trait InheritanceTest
         $migration = $this->createMigrationClassContent('Inheritance');
 
         self::assertStringContainsString('class Migration', $migration);
+
         $this->executeMigration($migration);
     }
 
@@ -30,15 +31,8 @@ trait InheritanceTest
     {
         em()->autoPersistOnCreate();
 
-        $weapon1 = em()->create(
-            WeaponCard::class,
-            ['name' => 'Iron blade', 'weaponType' => 'blade']
-        );
-        $armor1 = em()->create(
-            ArmorCard::class,
-            ['name' => 'Wooden shield', 'armorType' => 'shield']
-        );
-
+        $weapon1 = em()->create(WeaponCard::class, ['name' => 'Iron blade', 'weaponType' => 'blade']);
+        $armor1 = em()->create(ArmorCard::class, ['name' => 'Wooden shield', 'armorType' => 'shield']);
         $weaponId = $weapon1->id();
         $armorId = $armor1->id();
 

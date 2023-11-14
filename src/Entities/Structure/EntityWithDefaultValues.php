@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Entities\Structure;
 
-use Medas\EntityManager\Attributes\{Entity, Id};
-use Medas\EntityManager\Types\Guid;
+use Medas\EntityManager\{Attributes\Entity, Attributes\Id, Types\Guid};
 
 #[Entity]
 class EntityWithDefaultValues

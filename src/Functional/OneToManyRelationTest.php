@@ -42,6 +42,7 @@ trait OneToManyRelationTest
 
         // Execute the migration
         $migration = $this->createMigrationClassContent('Relations');
+
         $this->executeMigration($migration);
     }
 
@@ -52,11 +53,9 @@ trait OneToManyRelationTest
         $this->rebuildTables();
 
         $group = em()->create(Group::class, ['name' => 'test group']);
-
         $person = em()->create(Person::class, ['name' => 'test person', 'group' => $group]);
 
         self::assertEquals($group, em()->get(Group::class, 1));
         self::assertEquals($person, em()->get(Person::class, 1));
     }
 }
-

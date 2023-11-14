@@ -7,9 +7,12 @@ namespace Medas\StorageManagerTests\Functional;
 use Medas\ConfigOptions\OptionController;
 use Medas\Core\Interfaces\ConfigManager;
 use Medas\EntityManager\ConfigOptions\EntityDirectories;
-use Medas\StorageManager\ConfigOptions\MigrationDirectory;
-use Medas\StorageManager\ConsoleCommands\{MakeMigrationCommand, MigrateCommand};
-use Medas\StorageManager\Migrations\MigrationManager;
+use Medas\StorageManager\{
+    ConfigOptions\MigrationDirectory,
+    ConsoleCommands\MakeMigrationCommand,
+    ConsoleCommands\MigrateCommand,
+    Migrations\MigrationManager
+};
 use Medas\StorageManagerTests\TestStorage;
 
 trait ConsoleCommandsTest
@@ -19,6 +22,7 @@ trait ConsoleCommandsTest
     public function testMakeMigrationCommand(): void
     {
         $this->controller()->deleteStore($this->store('new_stored_entities'));
+
         $directory = $this->getDirectory();
         $initialCount = count(glob($directory . '/*'));
 
@@ -39,7 +43,9 @@ trait ConsoleCommandsTest
         $this->setMigrationEntityDirectory();
 
         ob_start();
+
         service(MakeMigrationCommand::class)->process([]);
+
         ob_end_clean();
     }
 
@@ -67,6 +73,7 @@ trait ConsoleCommandsTest
         service(MigrateCommand::class)->process([]);
 
         self::assertCount(1, service(MigrationManager::class)->processedMigrations());
+
         $this->cleanUp();
     }
 }

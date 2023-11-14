@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests;
 
-use Medas\StorageManager\Interfaces\{Storage, StorageController, Store};
-use Medas\StorageManager\StorageManager;
-use Medas\StorageManagerTests\Functional\AllTests;
+use Medas\StorageManager\{Interfaces\Storage, Interfaces\StorageController, Interfaces\Store, StorageManager};
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-    use AllTests;
+    use Functional\AllTests;
 
     private Storage $storage;
+
     private StorageController $controller;
 
     protected function storage(): Storage

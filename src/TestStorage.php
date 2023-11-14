@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests;
 
-use Medas\StorageManager\Interfaces\{Storage, StorageController, Store};
-use Medas\StorageManager\Migrations\{MigrationBuildManager, MigrationManager};
+use Medas\StorageManager\{
+    Interfaces\Storage,
+    Interfaces\StorageController,
+    Interfaces\Store,
+    Migrations\MigrationBuildManager,
+    Migrations\MigrationManager
+};
 
 trait TestStorage
 {
@@ -19,7 +24,6 @@ trait TestStorage
     {
         $buildManager = service(MigrationBuildManager::class);
         $path = __DIR__ . '/Entities/' . $directory;
-
         $realDirectory = realpath($path);
 
         if ($realDirectory === false) {
@@ -32,6 +36,7 @@ trait TestStorage
     protected function executeMigration(string $migration): void
     {
         preg_match('/class (Migration\d+)/', $migration, $match);
+
         $directory = __DIR__ . DIRECTORY_SEPARATOR . 'migrations';
         $fileName = $directory . DIRECTORY_SEPARATOR . $match[1] . '.php';
 
@@ -47,11 +52,14 @@ trait TestStorage
 
         // Execute the migration
         file_put_contents($fileName, $migration);
+
         $manager = service(MigrationManager::class);
+
         $manager->migrate($directory);
 
         // Remove the test directory
         unlink($fileName);
+
         rmdir($directory);
     }
 }

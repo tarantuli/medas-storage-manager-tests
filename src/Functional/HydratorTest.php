@@ -7,6 +7,7 @@ namespace Medas\StorageManagerTests\Functional;
 use Medas\EntityManager\EntityManager;
 use Medas\StorageManagerTests\Entities\Migrations\StoredEntity;
 use Medas\StorageManagerTests\TestStorage;
+
 use function service;
 
 trait HydratorTest
@@ -16,7 +17,6 @@ trait HydratorTest
     public function testHydrateEntity(): void
     {
         $entityManager = service(EntityManager::class);
-
         $entity = $entityManager->get(StoredEntity::class, 1);
 
         self::assertInstanceOf(StoredEntity::class, $entity);

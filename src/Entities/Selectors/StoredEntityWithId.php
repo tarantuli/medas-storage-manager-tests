@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Entities\Selectors;
 
 use Medas\Core\AsSingleton;
-use Medas\EntityManager\Selector\{Conditions\WhereIs,
+use Medas\EntityManager\Selector\{
+    Conditions\WhereIs,
     Definition,
     Operants\Argument,
     Operants\Property,
     Parameter,
-    Selector};
+    Selector
+};
 use Medas\StorageManagerTests\Entities\Migrations\StoredEntity;
 
 class StoredEntityWithId implements Selector

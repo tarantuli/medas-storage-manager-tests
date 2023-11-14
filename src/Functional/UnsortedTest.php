@@ -24,8 +24,8 @@ trait UnsortedTest
         $migration = $this->createMigrationClassContent('Relations');
 
         self::assertStringContainsString('public function migrate(', $migration);
-        $this->migrationAssertions($migration);
 
+        $this->migrationAssertions($migration);
         $this->executeMigration($migration);
 
         self::assertTrue($this->controller()->hasStore($this->store('r_groups')));
@@ -36,6 +36,7 @@ trait UnsortedTest
 
         // Another migration should be empty
         $migration = $this->createMigrationClassContent('Relations');
+
         self::assertNull($migration);
     }
 
@@ -83,6 +84,7 @@ trait UnsortedTest
     public function testCreateGroup(): Group
     {
         $group = em()->create(Group::class, ['name' => 'related group']);
+
         em()->persist($group);
         em()->flush();
 
@@ -95,6 +97,7 @@ trait UnsortedTest
     public function testCreatePerson(Group $group): Person
     {
         $person = em()->create(Person::class, ['name' => 'related person', 'group' => $group]);
+
         em()->persist($person);
         em()->flush();
 

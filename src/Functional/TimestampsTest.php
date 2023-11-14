@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
-use Medas\StorageManager\Interfaces\Store;
 use Medas\StorageManagerTests\Entities\Attributes\TimestampedPost;
 use Medas\StorageManagerTests\TestStorage;
+use Medas\StorageManager\Interfaces\Store;
 
 trait TimestampsTest
 {
@@ -17,7 +17,9 @@ trait TimestampsTest
     public function testCreateTsTable(): void
     {
         $this->controller()->deleteStore($this->store(self::TS_TABLE_NAME));
+
         $migration = $this->createMigrationClassContent('Attributes');
+
         $this->executeMigration($migration);
 
         self::assertInstanceOf(Store::class, $this->store(self::TS_TABLE_NAME));

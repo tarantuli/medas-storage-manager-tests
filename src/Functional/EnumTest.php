@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
-use Medas\StorageManager\Exceptions\EnumIsNotBacked;
-use Medas\StorageManager\Interfaces\Store;
+use Medas\StorageManager\{Exceptions\EnumIsNotBacked, Interfaces\Store};
 use Medas\StorageManagerTests\TestStorage;
 
 trait EnumTest
@@ -15,6 +14,7 @@ trait EnumTest
     public function testUnbackedEnum(): void
     {
         self::expectException(EnumIsNotBacked::class);
+
         $this->createMigrationClassContent('UnbackedEnums');
     }
 

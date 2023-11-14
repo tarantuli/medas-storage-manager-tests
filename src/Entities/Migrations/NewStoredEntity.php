@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Entities\Migrations;
 
-use Medas\EntityManager\Attributes\{Entity, Id, IsGeneratedValue, IsUnique};
-use Medas\EntityManager\Types\DateTime;
+use Medas\EntityManager\{
+    Attributes\Entity,
+    Attributes\Id,
+    Attributes\IsGeneratedValue,
+    Attributes\IsUnique,
+    Types\DateTime
+};
 
 #[Entity(store: 'new_stored_entities')]
 class NewStoredEntity

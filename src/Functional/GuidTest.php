@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Functional;
 
 use Medas\Core\Interfaces\Guid;
-use Medas\StorageManager\Interfaces\Store;
 use Medas\StorageManagerTests\Entities\Attributes\{GuidPost, GuidPropertyPost};
 use Medas\StorageManagerTests\TestStorage;
+use Medas\StorageManager\Interfaces\Store;
 
 trait GuidTest
 {
@@ -18,7 +18,9 @@ trait GuidTest
     public function testCreateTable(): void
     {
         $this->controller()->deleteStore($this->store(self::TABLE_NAME));
+
         $migration = $this->createMigrationClassContent('Attributes');
+
         $this->executeMigration($migration);
 
         self::assertInstanceOf(Store::class, $this->store(self::TABLE_NAME));
