@@ -12,7 +12,6 @@ class ExampleTest extends TestCase
     use Functional\AllTests;
 
     private Storage $storage;
-
     private StorageController $controller;
 
     protected function storage(): Storage

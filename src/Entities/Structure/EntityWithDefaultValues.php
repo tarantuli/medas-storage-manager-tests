@@ -13,8 +13,6 @@ class EntityWithDefaultValues
     public string $id;
 
     private \DateTime $dateTimeNotNullNoDefault;
-
     private \DateTime|null $dateTimeNullNoDefault;
-
     private \DateTime|null $dateTimeNullDefaultNull = null;
 }

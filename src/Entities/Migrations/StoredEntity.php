@@ -26,9 +26,7 @@ class StoredEntity
     public \DateTime|null $createdAt;
 
     public string $defaultString = 'default string';
-
     public int $defaultInteger = 10;
-
     public Guid $guid;
 
     public function id(): int|null
