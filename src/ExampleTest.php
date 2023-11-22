@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests;
 
-use Medas\StorageManager\{Interfaces\Storage, Interfaces\StorageController, Interfaces\Store, StorageManager};
+use Medas\StorageManager\{
+    Interfaces\Storage,
+    Interfaces\StorageController,
+    Interfaces\Store,
+    StorageManager
+};
 use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase

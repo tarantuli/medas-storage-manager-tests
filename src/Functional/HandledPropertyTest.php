@@ -22,7 +22,10 @@ trait HandledPropertyTest
 
         $this->executeMigration($migration);
 
-        $entity = em()->create(EntityWithHandler::class, ['propertyClass' => new PropertyClass(1, 10)]);
+        $entity = em()->create(
+            EntityWithHandler::class,
+            ['propertyClass' => new PropertyClass(1, 10)]
+        );
 
         em()->clear();
 

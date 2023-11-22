@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Functional;
 
 use Medas\Core\Interfaces\Guid;
+use Medas\StorageManager\Interfaces\Store;
 use Medas\StorageManagerTests\Entities\Attributes\{GuidPost, GuidPropertyPost};
 use Medas\StorageManagerTests\TestStorage;
-use Medas\StorageManager\Interfaces\Store;
 
 trait GuidTest
 {

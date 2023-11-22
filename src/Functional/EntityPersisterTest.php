@@ -40,7 +40,10 @@ trait EntityPersisterTest
         // Clear the cache, fetch the entity again
         em()->clear();
 
-        $entity = service(Repository::class)->fetchOne(StoredEntityWithName::instance(), ['name' => $newName]);
+        $entity = service(Repository::class)->fetchOne(
+            StoredEntityWithName::instance(),
+            ['name' => $newName]
+        );
 
         self::assertIsInt($entity->id());
         self::assertEquals($newName, $entity->name);
@@ -103,7 +106,10 @@ trait EntityPersisterTest
         // Clear the cache and fetch it again, to ensure it does not exist in storage anymore
         em()->clear();
 
-        $fetchedEntity = service(Repository::class)->fetchOne(StoredEntityWithId::instance(), ['id' => $id]);
+        $fetchedEntity = service(Repository::class)->fetchOne(
+            StoredEntityWithId::instance(),
+            ['id' => $id]
+        );
 
         self::assertNull($fetchedEntity);
     }
@@ -121,7 +127,10 @@ trait EntityPersisterTest
         // Clear the cache, fetch the entity again
         em()->clear();
 
-        $fetchedEntity = service(Repository::class)->getOrCreate(StoredEntity::class, ['name' => $newName]);
+        $fetchedEntity = service(Repository::class)->getOrCreate(
+            StoredEntity::class,
+            ['name' => $newName]
+        );
 
         self::assertInstanceOf(StoredEntity::class, $fetchedEntity);
     }

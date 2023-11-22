@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Entities\Attributes;
 
 use Medas\Core\Interfaces\HasId;
-use Medas\EntityManager\{Attributes\Entity, Attributes\Id, Attributes\IsGeneratedValue, Traits\Timestamps};
+use Medas\EntityManager\{
+    Attributes\Entity,
+    Attributes\Id,
+    Attributes\IsGeneratedValue,
+    Traits\Timestamps
+};
 
 #[Entity(store: 'timestamped_posts')]
 class TimestampedPost implements HasId
