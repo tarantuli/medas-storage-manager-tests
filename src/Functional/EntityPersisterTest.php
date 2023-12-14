@@ -30,6 +30,7 @@ trait EntityPersisterTest
     public function testEpCreateAndFetch(): void
     {
         $entity = new StoredEntity();
+
         $entity->name = $newName = (string) mt_rand();
 
         self::assertNull($entity->id());
@@ -52,6 +53,7 @@ trait EntityPersisterTest
     public function testEpCreateIsIdFilled(): void
     {
         $entity = new StoredEntity();
+
         $entity->name = $newName = (string) mt_rand();
 
         self::assertNull($entity->id());
@@ -67,6 +69,7 @@ trait EntityPersisterTest
     public function testEpUpdate(): void
     {
         $entity = em()->get(StoredEntity::class, 1);
+
         $entity->name = $newName = (string) mt_rand();
 
         em()->flush();
@@ -117,6 +120,7 @@ trait EntityPersisterTest
     public function testEpCreateAndFetchWithValues(): void
     {
         $entity = new StoredEntity();
+
         $entity->name = $newName = (string) mt_rand();
 
         self::assertNull($entity->id());

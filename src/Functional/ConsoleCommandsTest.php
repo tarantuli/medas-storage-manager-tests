@@ -68,11 +68,16 @@ trait ConsoleCommandsTest
 
     public function testMigrateCommand(): void
     {
+        $aPrioriCount = count(service(MigrationManager::class)->processedMigrations());
+
         $this->makeMigration();
 
         service(MigrateCommand::class)->process([]);
 
-        self::assertCount(1, service(MigrationManager::class)->processedMigrations());
+        self::assertCount(
+            $aPrioriCount + 1,
+            service(MigrationManager::class)->processedMigrations()
+        );
 
         $this->cleanUp();
     }
