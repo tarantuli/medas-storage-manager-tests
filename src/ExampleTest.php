@@ -41,4 +41,8 @@ class ExampleTest extends TestCase
 
         return $this->controller;
     }
+
+    protected function checkBackedEnumMigration(string $migration): void {
+        // Do nothing
+    }
 }
