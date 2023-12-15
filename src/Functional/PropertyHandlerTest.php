@@ -17,7 +17,6 @@ trait PropertyHandlerTest
 
         $migration = $this->createMigrationClassContent('PropertyHandlers');
 
-        // self::assertStringContainsString('`propertyClass` text not null', $migration);
         $this->executeMigration($migration);
 
         self::assertInstanceOf(Store::class, $this->store('entities_with_handler'));

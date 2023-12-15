@@ -7,8 +7,6 @@ namespace Medas\StorageManagerTests\Functional;
 use Medas\StorageManagerTests\Entities\Relations\{Group, Person};
 use Medas\StorageManagerTests\TestStorage;
 
-use function PHPUnit\Framework\assertNull;
-
 trait UnsortedTest
 {
     use TestStorage;
