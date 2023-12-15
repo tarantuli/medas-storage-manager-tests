@@ -46,4 +46,9 @@ class ExampleTest extends TestCase
     {
         // Do nothing
     }
+
+    protected function checkPropertyHandlerMigration(string $migration): void
+    {
+        // Do nothing
+    }
 }
