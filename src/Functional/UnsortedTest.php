@@ -7,6 +7,8 @@ namespace Medas\StorageManagerTests\Functional;
 use Medas\StorageManagerTests\Entities\Relations\{Group, Person};
 use Medas\StorageManagerTests\TestStorage;
 
+use function PHPUnit\Framework\assertNull;
+
 trait UnsortedTest
 {
     use TestStorage;
@@ -59,7 +61,12 @@ trait UnsortedTest
 
         $this->controller()->actionExecutor()->executeSet($action);
 
-        self::assertFalse($action->lastRecordSet->hasRecords());
+        if ($action->lastRecordSet) {
+            self::assertFalse($action->lastRecordSet->hasRecords());
+        }
+        else {
+            self::assertNull($action->lastRecordSet);
+        }
 
         $action = $this->controller()->actionBuilders()->insert()->build(
             $this->store('r_people'),
@@ -68,7 +75,12 @@ trait UnsortedTest
 
         $this->controller()->actionExecutor()->executeSet($action);
 
-        self::assertFalse($action->lastRecordSet->hasRecords());
+        if ($action->lastRecordSet) {
+            self::assertFalse($action->lastRecordSet->hasRecords());
+        }
+        else {
+            self::assertNull($action->lastRecordSet);
+        }
     }
 
     /**
