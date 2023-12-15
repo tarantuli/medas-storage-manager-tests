@@ -11,6 +11,8 @@ trait UnsortedTest
 {
     use TestStorage;
 
+    abstract protected function migrationAssertions(string $migration): void;
+
     public function testMigration(): void
     {
         // Delete all stores if they still exist
@@ -112,10 +114,5 @@ trait UnsortedTest
     public function testFetchRelation(Person $person): void
     {
         self::assertInstanceOf(Group::class, em()->get(Person::class, $person->id())->group());
-    }
-
-    protected function migrationAssertions(string $migration): void
-    {
-        self::assertStringContainsString('alter table', $migration);
     }
 }

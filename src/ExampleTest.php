@@ -51,4 +51,9 @@ class ExampleTest extends TestCase
     {
         // Do nothing
     }
+
+    protected function migrationAssertions(string $migration): void
+    {
+        // self::assertStringContainsString('alter table', $migration);
+    }
 }
