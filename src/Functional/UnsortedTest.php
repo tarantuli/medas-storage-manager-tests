@@ -11,12 +11,16 @@ trait UnsortedTest
 {
     use TestStorage;
 
+    abstract protected function preMigrationPreparations(): void;
+
     abstract protected function migrationAssertions(string $migration): void;
+
+    abstract protected function postMigrationAssertions(): void;
 
     public function testMigration(): void
     {
         // Delete all stores if they still exist
-        $this->controller()->deleteStore($this->store('r_groups__labels'));
+        $this->preMigrationPreparations();
         $this->controller()->deleteStore($this->store('r_other_people'));
         $this->controller()->deleteStore($this->store('r_people'));
         $this->controller()->deleteStore($this->store('r_groups'));
@@ -34,7 +38,8 @@ trait UnsortedTest
         self::assertTrue($this->controller()->hasStore($this->store('r_people')));
         self::assertTrue($this->controller()->hasStore($this->store('r_labels')));
         self::assertTrue($this->controller()->hasStore($this->store('r_other_people')));
-        self::assertTrue($this->controller()->hasStore($this->store('r_groups__labels')));
+
+        $this->postMigrationAssertions();
 
         // Another migration should be empty
         $migration = $this->createMigrationClassContent('Relations');

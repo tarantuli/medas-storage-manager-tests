@@ -52,8 +52,18 @@ class ExampleTest extends TestCase
         // Do nothing
     }
 
+    protected function preMigrationPreparations(): void
+    {
+        // $this->controller()->deleteStore($this->store('r_groups__labels'));
+    }
+
     protected function migrationAssertions(string $migration): void
     {
         // self::assertStringContainsString('alter table', $migration);
+    }
+
+    protected function postMigrationAssertions(): void
+    {
+        // self::assertTrue($this->controller()->hasStore($this->store('r_groups__labels')));
     }
 }
