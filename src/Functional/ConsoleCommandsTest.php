@@ -33,9 +33,20 @@ trait ConsoleCommandsTest
         $this->cleanUp();
     }
 
-    private function getDirectory(): string
+    public function testMigrateCommand(): void
     {
-        return service(OptionController::class)->getValue(service(MigrationDirectory::class));
+        $aPrioriCount = count(service(MigrationManager::class)->processedMigrations());
+
+        $this->makeMigration();
+
+        service(MigrateCommand::class)->process([]);
+
+        self::assertCount(
+            $aPrioriCount + 1,
+            service(MigrationManager::class)->processedMigrations()
+        );
+
+        $this->cleanUp();
     }
 
     private function makeMigration(): void
@@ -66,19 +77,8 @@ trait ConsoleCommandsTest
         }
     }
 
-    public function testMigrateCommand(): void
+    private function getDirectory(): string
     {
-        $aPrioriCount = count(service(MigrationManager::class)->processedMigrations());
-
-        $this->makeMigration();
-
-        service(MigrateCommand::class)->process([]);
-
-        self::assertCount(
-            $aPrioriCount + 1,
-            service(MigrationManager::class)->processedMigrations()
-        );
-
-        $this->cleanUp();
+        return service(OptionController::class)->getValue(service(MigrationDirectory::class));
     }
 }

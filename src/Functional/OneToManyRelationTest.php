@@ -32,6 +32,19 @@ trait OneToManyRelationTest
         self::assertNull($this->controller()->recordFetchers()->filteredFetcher()->fetchOne($this->store('r_groups')));
     }
 
+    public function testStoreRelation(): void
+    {
+        em()->autoPersistOnCreate();
+
+        $this->rebuildTables();
+
+        $group = em()->create(Group::class, ['name' => 'test group']);
+        $person = em()->create(Person::class, ['name' => 'test person', 'group' => $group]);
+
+        self::assertEquals($group, em()->get(Group::class, 1));
+        self::assertEquals($person, em()->get(Person::class, 1));
+    }
+
     private function rebuildTables(): void
     {
         // Delete both stores if they still exist
@@ -44,18 +57,5 @@ trait OneToManyRelationTest
         $migration = $this->createMigrationClassContent('Relations');
 
         $this->executeMigration($migration);
-    }
-
-    public function testStoreRelation(): void
-    {
-        em()->autoPersistOnCreate();
-
-        $this->rebuildTables();
-
-        $group = em()->create(Group::class, ['name' => 'test group']);
-        $person = em()->create(Person::class, ['name' => 'test person', 'group' => $group]);
-
-        self::assertEquals($group, em()->get(Group::class, 1));
-        self::assertEquals($person, em()->get(Person::class, 1));
     }
 }

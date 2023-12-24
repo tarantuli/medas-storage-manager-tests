@@ -11,6 +11,8 @@ trait EnumTest
 {
     use TestStorage;
 
+    abstract protected function checkBackedEnumMigration(string $migration): void;
+
     public function testUnbackedEnum(): void
     {
         self::expectException(EnumIsNotBacked::class);
@@ -28,6 +30,4 @@ trait EnumTest
 
         self::assertInstanceOf(Store::class, $this->store('backed_enum_entities'));
     }
-
-    abstract protected function checkBackedEnumMigration(string $migration): void;
 }

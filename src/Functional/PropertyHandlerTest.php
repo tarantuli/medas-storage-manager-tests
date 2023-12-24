@@ -11,6 +11,8 @@ trait PropertyHandlerTest
 {
     use TestStorage;
 
+    abstract protected function checkPropertyHandlerMigration(string $migration): void;
+
     public function testCreateStorage(): void
     {
         $this->controller()->deleteStore($this->store('entities_with_handler'));
@@ -21,6 +23,4 @@ trait PropertyHandlerTest
 
         self::assertInstanceOf(Store::class, $this->store('entities_with_handler'));
     }
-
-    abstract protected function checkPropertyHandlerMigration(string $migration): void;
 }
