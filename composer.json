@@ -1,6 +1,10 @@
 {
     "name": "morphp/medas-storage-manager-tests",
     "description": "Medas storage manager tests",
+    "keywords": [
+        "storage",
+        "development"
+    ],
     "authors": [
         {
             "name": "Patrick Morpey",
