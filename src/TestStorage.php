@@ -9,7 +9,8 @@ use Medas\StorageManager\{
     Interfaces\StorageController,
     Interfaces\Store,
     Migrations\MigrationBuildManager,
-    Migrations\MigrationManager
+    Migrations\MigrationManager,
+    Migrations\Settings
 };
 
 trait TestStorage
@@ -30,7 +31,9 @@ trait TestStorage
             throw new \Exception('directory "' . $path . '" does not exist');
         }
 
-        return $buildManager->createMigrationClass([$realDirectory]);
+        $settings = new Settings([$realDirectory], $path);
+
+        return $buildManager->createMigrationClassCode($settings)->classCode;
     }
 
     protected function executeMigration(string $migration): void
