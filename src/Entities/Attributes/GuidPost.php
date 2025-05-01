@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Entities\Attributes;
 
-use Medas\Core\Interfaces\HasId;
-use Medas\EntityManager\{Attributes\Entity, Attributes\Id, Types\Guid};
+use Medas\Core\Interfaces\{Guid, HasId};
+use Medas\EntityManager\Attributes\{Entity, Id};
 
 #[Entity(store: 'guid_posts')]
 class GuidPost implements HasId
 {
-    #[Id, Guid]
-    private string $id;
+    #[Id]
+    private Guid $id;
 
-    public function id(): string
+    public function id(): Guid
     {
         return $this->id;
     }

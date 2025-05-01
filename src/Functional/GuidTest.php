@@ -37,7 +37,7 @@ trait GuidTest
         em()->persist($post, $post2);
         em()->flush();
 
-        self::assertTrue($this->isGuid($post->id()));
+        self::assertInstanceOf(Guid::class, $post->id());
         self::assertNotEquals($post2->id(), $post->id());
 
         return $post;
@@ -55,11 +55,5 @@ trait GuidTest
 
         self::assertTrue($post->id() > 0);
         self::assertInstanceOf(Guid::class, $post->guid());
-        self::assertTrue($this->isGuid((string) $post->guid()));
-    }
-
-    private function isGuid(string $value): bool
-    {
-        return (bool) preg_match('/^(\{)?[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}(?(1)})$/i', $value);
     }
 }
