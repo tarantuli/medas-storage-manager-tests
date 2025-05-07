@@ -12,7 +12,7 @@ trait AllTests
     use EntityPersisterTest;
     use EnumTest;
     use HandledPropertyTest;
-    use GuidTest;
+    use UuidTest;
     use HydratorTest;
     use InheritanceTest;
     use ManyToManyRelationTest;

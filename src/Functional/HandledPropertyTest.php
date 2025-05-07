@@ -30,7 +30,7 @@ trait HandledPropertyTest
         em()->clear();
 
         // Fetch it again
-        $refetchedEntity = em()->get(EntityWithHandler::class, $entity->guid);
+        $refetchedEntity = em()->get(EntityWithHandler::class, $entity->uuid);
 
         self::assertEquals(1, $refetchedEntity->propertyClass->min);
     }

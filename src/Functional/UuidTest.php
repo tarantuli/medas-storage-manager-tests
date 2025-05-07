@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
-use Medas\Core\Interfaces\Guid;
+use Medas\Core\Interfaces\Uuid;
 use Medas\StorageManager\Interfaces\Store;
-use Medas\StorageManagerTests\Entities\Attributes\{GuidPost, GuidPropertyPost};
+use Medas\StorageManagerTests\Entities\Attributes\{UuidPost, UuidPropertyPost};
 use Medas\StorageManagerTests\TestStorage;
 
-trait GuidTest
+trait UuidTest
 {
     use TestStorage;
 
-    private const TABLE_NAME = 'guid_posts';
+    private const TABLE_NAME = 'Uuid_posts';
 
     public function testCreateTable(): void
     {
@@ -29,15 +29,15 @@ trait GuidTest
     /**
      * @depends testCreateTable
      */
-    public function testCreateInstance(): GuidPost
+    public function testCreateInstance(): UuidPost
     {
-        $post = new GuidPost();
-        $post2 = new GuidPost();
+        $post = new UuidPost();
+        $post2 = new UuidPost();
 
         em()->persist($post, $post2);
         em()->flush();
 
-        self::assertInstanceOf(Guid::class, $post->id());
+        self::assertInstanceOf(Uuid::class, $post->id());
         self::assertNotEquals($post2->id(), $post->id());
 
         return $post;
@@ -46,14 +46,14 @@ trait GuidTest
     /**
      * @depends testCreateTable
      */
-    public function testGuidProperty(): void
+    public function testUuidProperty(): void
     {
-        $post = new GuidPropertyPost();
+        $post = new UuidPropertyPost();
 
         em()->persist($post);
         em()->flush();
 
         self::assertTrue($post->id() > 0);
-        self::assertInstanceOf(Guid::class, $post->guid());
+        self::assertInstanceOf(Uuid::class, $post->Uuid());
     }
 }
