@@ -4,14 +4,8 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Entities\Migrations;
 
-use Medas\Core\Interfaces\Uuid;
-use Medas\EntityManager\{
-    Attributes\Entity,
-    Attributes\Id,
-    Attributes\IsGeneratedValue,
-    Attributes\IsUnique,
-    Types\DateTime
-};
+use Medas\Core\{Interfaces\Uuid, Types\DateTime};
+use Medas\EntityManager\Attributes\{Entity, Id, IsGeneratedValue, IsUnique};
 
 #[Entity(store: 'stored_entities')]
 class StoredEntity

@@ -34,15 +34,18 @@ trait OneToManyRelationTest
 
     public function testStoreRelation(): void
     {
-        em()->autoPersistOnCreate();
-
+        $this->entityManager()->autoPersistOnCreate();
         $this->rebuildTables();
 
-        $group = em()->create(Group::class, ['name' => 'test group']);
-        $person = em()->create(Person::class, ['name' => 'test person', 'group' => $group]);
+        $group = $this->entityManager()->create(Group::class, ['name' => 'test group']);
 
-        self::assertEquals($group, em()->get(Group::class, 1));
-        self::assertEquals($person, em()->get(Person::class, 1));
+        $person = $this->entityManager()->create(
+            Person::class,
+            ['name' => 'test person', 'group' => $group]
+        );
+
+        self::assertEquals($group, $this->entityManager()->get(Group::class, 1));
+        self::assertEquals($person, $this->entityManager()->get(Person::class, 1));
     }
 
     private function rebuildTables(): void

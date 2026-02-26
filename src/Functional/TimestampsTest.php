@@ -32,8 +32,8 @@ trait TimestampsTest
     {
         $post = new TimestampedPost();
 
-        em()->persist($post);
-        em()->flush();
+        $this->entityManager()->persist($post);
+        $this->entityManager()->flush();
 
         self::assertInstanceOf(\DateTime::class, $post->createdAt());
 
@@ -47,7 +47,7 @@ trait TimestampsTest
     {
         $post->counter++;
 
-        em()->flush();
+        $this->entityManager()->flush();
 
         self::assertNotEquals(
             $post->createdAt()->format(\DateTimeInterface::RFC3339_EXTENDED),

@@ -100,10 +100,10 @@ trait UnsortedTest
      */
     public function testCreateGroup(): Group
     {
-        $group = em()->create(Group::class, ['name' => 'related group']);
+        $group = $this->entityManager()->create(Group::class, ['name' => 'related group']);
 
-        em()->persist($group);
-        em()->flush();
+        $this->entityManager()->persist($group);
+        $this->entityManager()->flush();
 
         self::assertIsNumeric($group->id());
 
@@ -113,10 +113,13 @@ trait UnsortedTest
     /** @depends testCreateGroup */
     public function testCreatePerson(Group $group): Person
     {
-        $person = em()->create(Person::class, ['name' => 'related person', 'group' => $group]);
+        $person = $this->entityManager()->create(
+            Person::class,
+            ['name' => 'related person', 'group' => $group]
+        );
 
-        em()->persist($person);
-        em()->flush();
+        $this->entityManager()->persist($person);
+        $this->entityManager()->flush();
 
         self::assertIsNumeric($person->id());
 
@@ -128,6 +131,9 @@ trait UnsortedTest
      */
     public function testFetchRelation(Person $person): void
     {
-        self::assertInstanceOf(Group::class, em()->get(Person::class, $person->id())->group());
+        self::assertInstanceOf(
+            Group::class,
+            $this->entityManager()->get(Person::class, $person->id())->group()
+        );
     }
 }

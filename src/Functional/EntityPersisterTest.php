@@ -35,11 +35,11 @@ trait EntityPersisterTest
 
         self::assertNull($entity->id());
 
-        em()->persist($entity);
-        em()->flush();
+        $this->entityManager()->persist($entity);
+        $this->entityManager()->flush();
 
         // Clear the cache, fetch the entity again
-        em()->clear();
+        $this->entityManager()->clear();
 
         $entity = service(Repository::class)->fetchOne(
             StoredEntityWithName::instance(),
@@ -58,8 +58,8 @@ trait EntityPersisterTest
 
         self::assertNull($entity->id());
 
-        em()->persist($entity);
-        em()->flush();
+        $this->entityManager()->persist($entity);
+        $this->entityManager()->flush();
 
         // No clearing, no re-fetching
         self::assertIsInt($entity->id());
@@ -68,14 +68,14 @@ trait EntityPersisterTest
 
     public function testEpUpdate(): void
     {
-        $entity = em()->get(StoredEntity::class, 1);
+        $entity = $this->entityManager()->get(StoredEntity::class, 1);
 
         $entity->name = $newName = (string) mt_rand();
 
-        em()->flush();
-        em()->clear();
+        $this->entityManager()->flush();
+        $this->entityManager()->clear();
 
-        $entity = em()->get(StoredEntity::class, 1);
+        $entity = $this->entityManager()->get(StoredEntity::class, 1);
 
         self::assertEquals($newName, $entity->name);
     }
@@ -83,31 +83,34 @@ trait EntityPersisterTest
     public function testEpDelete(): void
     {
         // Create and persist a new entity
-        $storedEntity = em()->create(StoredEntity::class, ['name' => (string) mt_rand()]);
+        $storedEntity = $this->entityManager()->create(
+            StoredEntity::class,
+            ['name' => (string) mt_rand()]
+        );
 
-        em()->persist($storedEntity);
-        em()->flush();
+        $this->entityManager()->persist($storedEntity);
+        $this->entityManager()->flush();
 
         $id = $storedEntity->id();
 
-        // Clear the cache and fetch it from storage, to ensure it was stored
-        em()->clear();
+        // Clear the cache and fetch it from storage to ensure it was stored
+        $this->entityManager()->clear();
 
-        $fetchedEntity = em()->get(StoredEntity::class, $id);
+        $fetchedEntity = $this->entityManager()->get(StoredEntity::class, $id);
 
         self::assertInstanceOf(StoredEntity::class, $fetchedEntity);
 
         // Delete the entity and flush
-        em()->delete($fetchedEntity);
-        em()->flush();
+        $this->entityManager()->delete($fetchedEntity);
+        $this->entityManager()->flush();
 
         // Ensure it does not exist in the cache anymore
-        $fetchedEntity = em()->get(StoredEntity::class, $id);
+        $fetchedEntity = $this->entityManager()->get(StoredEntity::class, $id);
 
         self::assertFalse(isset($fetchedEntity->name));
 
-        // Clear the cache and fetch it again, to ensure it does not exist in storage anymore
-        em()->clear();
+        // Clear the cache and fetch it again to ensure it does not exist in storage anymore
+        $this->entityManager()->clear();
 
         $fetchedEntity = service(Repository::class)->fetchOne(
             StoredEntityWithId::instance(),
@@ -125,11 +128,11 @@ trait EntityPersisterTest
 
         self::assertNull($entity->id());
 
-        em()->persist($entity);
-        em()->flush();
+        $this->entityManager()->persist($entity);
+        $this->entityManager()->flush();
 
         // Clear the cache, fetch the entity again
-        em()->clear();
+        $this->entityManager()->clear();
 
         $fetchedEntity = service(Repository::class)->getOrCreate(
             StoredEntity::class,

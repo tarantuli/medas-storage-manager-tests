@@ -27,20 +27,25 @@ trait ManyToManyRelationTest
     /** @depends testCreateMtnMigration */
     public function testMtmStoring(): Book
     {
-        em()->autoPersistOnCreate();
+        $this->entityManager()->autoPersistOnCreate();
 
-        $label1 = em()->create(Label::class, ['name' => 'label 1']);
-        $label2 = em()->create(Label::class, ['name' => 'label 2']);
-        $book = em()->create(Book::class, ['labels' => new Labels(fn() => [$label1, $label2])]);
+        $label1 = $this->entityManager()->create(Label::class, ['name' => 'label 1']);
+        $label2 = $this->entityManager()->create(Label::class, ['name' => 'label 2']);
+
+        $book = $this->entityManager()->create(
+            Book::class,
+            ['labels' => new Labels(fn() => [$label1, $label2])]
+        );
+
         $label1Id = $label1->id();
         $bookId = $book->id();
 
-        em()->clear();
+        $this->entityManager()->clear();
 
-        $book = em()->get(Book::class, $bookId);
+        $book = $this->entityManager()->get(Book::class, $bookId);
 
         self::assertInstanceOf(Book::class, $book);
-        self::assertInstanceOf(Labels::class, $book->labels);
+        self::assertCount(2, $book->labels);
         self::assertInstanceOf(Label::class, $book->labels[0]);
         self::assertEquals($label1Id, $book->labels[0]->id());
 
@@ -50,15 +55,15 @@ trait ManyToManyRelationTest
     /** @depends testMtmStoring */
     public function testAdding(Book $book): Book
     {
-        em()->autoPersistOnCreate();
+        $this->entityManager()->autoPersistOnCreate();
 
-        $label3 = em()->create(Label::class, ['name' => 'label 3']);
+        $label3 = $this->entityManager()->create(Label::class, ['name' => 'label 3']);
         $book->labels[] = $label3;
 
-        em()->flush();
-        em()->clear();
+        $this->entityManager()->flush();
+        $this->entityManager()->clear();
 
-        $book = em()->get(Book::class, $book->id());
+        $book = $this->entityManager()->get(Book::class, $book->id());
 
         self::assertEquals(3, $book->labels->count());
 
@@ -68,14 +73,14 @@ trait ManyToManyRelationTest
     /** @depends testAdding */
     public function testDeleting(Book $book): Book
     {
-        em()->autoPersistOnCreate();
+        $this->entityManager()->autoPersistOnCreate();
 
         unset($book->labels[1]);
 
-        em()->flush();
-        em()->clear();
+        $this->entityManager()->flush();
+        $this->entityManager()->clear();
 
-        $book = em()->get(Book::class, $book->id());
+        $book = $this->entityManager()->get(Book::class, $book->id());
 
         self::assertEquals(2, $book->labels->count());
 
@@ -85,17 +90,17 @@ trait ManyToManyRelationTest
     /** @depends testDeleting */
     public function testAddingAndDeleting(Book $book): Book
     {
-        em()->autoPersistOnCreate();
+        $this->entityManager()->autoPersistOnCreate();
 
-        $label4 = em()->create(Label::class, ['name' => 'label 4']);
+        $label4 = $this->entityManager()->create(Label::class, ['name' => 'label 4']);
 
         unset($book->labels[0]);
 
         $book->labels[] = $label4;
 
-        em()->clear();
+        $this->entityManager()->clear();
 
-        $book = em()->get(Book::class, $book->id());
+        $book = $this->entityManager()->get(Book::class, $book->id());
 
         self::assertEquals(2, $book->labels->count());
 

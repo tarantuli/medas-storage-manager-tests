@@ -34,14 +34,14 @@ trait InheritanceTest
     /** @depends testInhCreateMigration */
     public function testInhStoring(): MockUpIds
     {
-        em()->autoPersistOnCreate();
+        $this->entityManager()->autoPersistOnCreate();
 
-        $weapon1 = em()->create(
+        $weapon1 = $this->entityManager()->create(
             WeaponCard::class,
             ['name' => 'Iron blade', 'weaponType' => 'blade']
         );
 
-        $armor1 = em()->create(
+        $armor1 = $this->entityManager()->create(
             ArmorCard::class,
             ['name' => 'Wooden shield', 'armorType' => 'shield']
         );
@@ -51,10 +51,10 @@ trait InheritanceTest
 
         self::assertNotEquals($armorId, $weaponId);
 
-        em()->clear();
+        $this->entityManager()->clear();
 
-        $weapon2 = em()->get(WeaponCard::class, $weaponId);
-        $armor2 = em()->get(ArmorCard::class, $armorId);
+        $weapon2 = $this->entityManager()->get(WeaponCard::class, $weaponId);
+        $armor2 = $this->entityManager()->get(ArmorCard::class, $armorId);
 
         self::assertInstanceOf(WeaponCard::class, $weapon2);
         self::assertInstanceOf(ArmorCard::class, $armor2);
@@ -74,8 +74,8 @@ trait InheritanceTest
     /** @depends testInhStoring */
     public function testInhRetrievingByParent(MockUpIds $ids): void
     {
-        $weapon = em()->get(Card::class, $ids->weaponId);
-        $armor = em()->get(Card::class, $ids->armorId);
+        $weapon = $this->entityManager()->get(Card::class, $ids->weaponId);
+        $armor = $this->entityManager()->get(Card::class, $ids->armorId);
 
         self::assertInstanceOf(WeaponCard::class, $weapon);
         self::assertInstanceOf(ArmorCard::class, $armor);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests;
 
+use Medas\EntityManager\EntityManager;
 use Medas\StorageManager\{
     Interfaces\Storage,
     Interfaces\StorageController,
@@ -20,6 +21,17 @@ trait TestStorage
     abstract protected function store(string $name): Store;
 
     abstract protected function controller(): StorageController;
+
+    private EntityManager $entityManager;
+
+    protected function entityManager(): EntityManager
+    {
+        if (!isset($this->entityManager)) {
+            $this->entityManager = service(EntityManager::class);
+        }
+
+        return $this->entityManager;
+    }
 
     protected function createMigrationClassContent(string $directory): string|null
     {

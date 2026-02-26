@@ -13,8 +13,7 @@ trait HandledPropertyTest
 
     public function testStoreHandledProperty(): void
     {
-        em()->autoPersistOnCreate();
-
+        $this->entityManager()->autoPersistOnCreate();
         $this->controller()->deleteStore($this->store('entities_with_handler'));
 
         // Ensure storage existence
@@ -22,15 +21,15 @@ trait HandledPropertyTest
 
         $this->executeMigration($migration);
 
-        $entity = em()->create(
+        $entity = $this->entityManager()->create(
             EntityWithHandler::class,
             ['propertyClass' => new PropertyClass(1, 10)]
         );
 
-        em()->clear();
+        $this->entityManager()->clear();
 
         // Fetch it again
-        $refetchedEntity = em()->get(EntityWithHandler::class, $entity->uuid);
+        $refetchedEntity = $this->entityManager()->get(EntityWithHandler::class, $entity->uuid);
 
         self::assertEquals(1, $refetchedEntity->propertyClass->min);
     }

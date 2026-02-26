@@ -16,7 +16,10 @@ trait DefaultValuesTest
     {
         $blueprint = service(EntityStructureFinder::class)->find(EntityWithDefaultValues::class);
 
-        self::assertInstanceOf(Blueprint::class, $blueprint);
+        self::assertInstanceOf(
+            Blueprint\Field::class,
+            $blueprint->fieldByName('dateTimeNotNullNoDefault')
+        );
 
         return $blueprint;
     }

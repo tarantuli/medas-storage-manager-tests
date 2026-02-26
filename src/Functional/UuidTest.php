@@ -34,8 +34,8 @@ trait UuidTest
         $post = new UuidPost();
         $post2 = new UuidPost();
 
-        em()->persist($post, $post2);
-        em()->flush();
+        $this->entityManager()->persist($post, $post2);
+        $this->entityManager()->flush();
 
         self::assertInstanceOf(Uuid::class, $post->id());
         self::assertNotEquals($post2->id(), $post->id());
@@ -50,8 +50,8 @@ trait UuidTest
     {
         $post = new UuidPropertyPost();
 
-        em()->persist($post);
-        em()->flush();
+        $this->entityManager()->persist($post);
+        $this->entityManager()->flush();
 
         self::assertTrue($post->id() > 0);
         self::assertInstanceOf(Uuid::class, $post->Uuid());
