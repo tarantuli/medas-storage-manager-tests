@@ -19,6 +19,8 @@ trait ConsoleCommandsTest
 {
     use TestStorage;
 
+    private mixed $originalEntityDirectories;
+
     public function testMakeMigrationCommand(): void
     {
         $this->controller()->deleteStore($this->store('new_stored_entities'));
@@ -62,14 +64,20 @@ trait ConsoleCommandsTest
 
     private function setMigrationEntityDirectory(): void
     {
-        service(ConfigManager::class)->setValue(
-            service(OptionController::class)->getPath(service(EntityDirectories::class)),
-            [realpath(__DIR__ . '/../Entities/Migrations')]
-        );
+        $configManager = service(ConfigManager::class);
+        $optionController = service(OptionController::class);
+        $path = $optionController->getPath(service(EntityDirectories::class));
+        $this->originalEntityDirectories = $configManager->getValue($path);
+
+        $configManager->setValue($path, [realpath(__DIR__ . '/../Entities/Migrations')]);
     }
 
     private function cleanUp(): void
     {
+        $path = service(OptionController::class)->getPath(service(EntityDirectories::class));
+
+        service(ConfigManager::class)->setValue($path, $this->originalEntityDirectories);
+
         foreach (glob($this->getDirectory() . '/*') as $file) {
             if (is_file($file)) {
                 unlink($file);

@@ -44,8 +44,8 @@ trait OneToManyRelationTest
             ['name' => 'test person', 'group' => $group]
         );
 
-        self::assertEquals($group, $this->entityManager()->get(Group::class, 1));
-        self::assertEquals($person, $this->entityManager()->get(Person::class, 1));
+        self::assertEquals($group, $this->entityManager()->get(Group::class, $group->id()));
+        self::assertEquals($person, $this->entityManager()->get(Person::class, $person->id()));
     }
 
     private function rebuildTables(): void

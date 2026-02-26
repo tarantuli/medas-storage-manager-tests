@@ -40,7 +40,7 @@ trait TestStorage
         $realDirectory = realpath($path);
 
         if ($realDirectory === false) {
-            throw new \Exception('directory "' . $path . '" does not exist');
+            throw new Exceptions\DirectoryDoesNotExist($path);
         }
 
         $settings = new Settings([$realDirectory], $path);
@@ -51,6 +51,10 @@ trait TestStorage
     protected function executeMigration(string $migration): void
     {
         preg_match('/class (Migration\d+)/', $migration, $match);
+
+        if (!array_key_exists(1, $match)) {
+            throw new Exceptions\FailedToReadClassNameFromMigrationContent($migration);
+        }
 
         $directory = __DIR__ . DIRECTORY_SEPARATOR . 'migrations';
         $fileName = $directory . DIRECTORY_SEPARATOR . $match[1] . '.php';
@@ -66,15 +70,22 @@ trait TestStorage
         }
 
         // Execute the migration
-        file_put_contents($fileName, $migration);
+        try {
+            file_put_contents($fileName, $migration);
 
-        $manager = service(MigrationManager::class);
+            $manager = service(MigrationManager::class);
 
-        $manager->migrate($directory);
+            $manager->migrate($directory);
+        }
 
-        // Remove the test directory
-        unlink($fileName);
+        finally{
+            if (file_exists($fileName)) {
+                unlink($fileName);
+            }
 
-        rmdir($directory);
+            if (is_dir($directory)) {
+                rmdir($directory);
+            }
+        }
     }
 }

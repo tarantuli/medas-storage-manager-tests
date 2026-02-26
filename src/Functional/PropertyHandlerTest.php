@@ -20,6 +20,7 @@ trait PropertyHandlerTest
         $migration = $this->createMigrationClassContent('PropertyHandlers');
 
         $this->executeMigration($migration);
+        $this->checkPropertyHandlerMigration($migration);
 
         self::assertInstanceOf(Store::class, $this->store('entities_with_handler'));
     }

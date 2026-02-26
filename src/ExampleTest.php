@@ -36,7 +36,7 @@ class ExampleTest extends TestCase
     protected function controller(): StorageController
     {
         if (!isset($this->controller)) {
-            service(StorageManager::class)->controller($this->storage());
+            $this->controller = service(StorageManager::class)->controller($this->storage());
         }
 
         return $this->controller;

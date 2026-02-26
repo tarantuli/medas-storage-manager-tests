@@ -7,7 +7,7 @@ namespace Medas\StorageManagerTests\Entities\Attributes;
 use Medas\Core\Interfaces\{HasId, Uuid};
 use Medas\EntityManager\Attributes\{Entity, Id};
 
-#[Entity(store: 'Uuid_posts')]
+#[Entity(store: 'uuid_posts')]
 class UuidPost implements HasId
 {
     #[Id]

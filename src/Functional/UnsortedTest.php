@@ -82,7 +82,7 @@ trait UnsortedTest
     }
 
     /**
-     * @dpeends testCreateRecords
+     * @depends testCreateRecords
      */
     public function testFetchRecords(): void
     {

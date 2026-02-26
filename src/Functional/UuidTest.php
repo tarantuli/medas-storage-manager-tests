@@ -13,7 +13,7 @@ trait UuidTest
 {
     use TestStorage;
 
-    private const TABLE_NAME = 'Uuid_posts';
+    private const TABLE_NAME = 'uuid_posts';
 
     public function testCreateTable(): void
     {
@@ -54,6 +54,6 @@ trait UuidTest
         $this->entityManager()->flush();
 
         self::assertTrue($post->id() > 0);
-        self::assertInstanceOf(Uuid::class, $post->Uuid());
+        self::assertInstanceOf(Uuid::class, $post->uuid());
     }
 }

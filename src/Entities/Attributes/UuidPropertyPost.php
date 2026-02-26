@@ -7,7 +7,7 @@ namespace Medas\StorageManagerTests\Entities\Attributes;
 use Medas\Core\Interfaces\{HasId, Uuid};
 use Medas\EntityManager\Attributes\{Entity, Id, IsGeneratedValue};
 
-#[Entity(store: 'Uuid_property_posts')]
+#[Entity(store: 'uuid_property_posts')]
 class UuidPropertyPost implements HasId
 {
     #[Id, IsGeneratedValue]
@@ -20,7 +20,7 @@ class UuidPropertyPost implements HasId
         return $this->id;
     }
 
-    public function Uuid(): Uuid
+    public function uuid(): Uuid
     {
         return $this->uuid;
     }

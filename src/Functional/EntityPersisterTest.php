@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Functional;
 
+use Medas\Core\Types\Uuid;
 use Medas\EntityManager\Repository;
 use Medas\StorageManagerTests\Entities\{
     Migrations\StoredEntity,
@@ -48,6 +49,9 @@ trait EntityPersisterTest
 
         self::assertIsInt($entity->id());
         self::assertEquals($newName, $entity->name);
+        self::assertEquals('default string', $entity->defaultString);
+        self::assertEquals(10, $entity->defaultInteger);
+        self::assertInstanceOf(Uuid::class, $entity->uuid);
     }
 
     public function testEpCreateIsIdFilled(): void

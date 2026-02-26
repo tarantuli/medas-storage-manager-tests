@@ -8,12 +8,13 @@ use Medas\EntityManager\EntityManager;
 use Medas\StorageManagerTests\Entities\Migrations\StoredEntity;
 use Medas\StorageManagerTests\TestStorage;
 
-use function service;
-
 trait HydratorTest
 {
     use TestStorage;
 
+    /**
+     * @depends testEpCreateAndFetch
+     */
     public function testHydrateEntity(): void
     {
         $entityManager = service(EntityManager::class);

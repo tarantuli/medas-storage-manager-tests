@@ -98,6 +98,7 @@ trait ManyToManyRelationTest
 
         $book->labels[] = $label4;
 
+        $this->entityManager()->flush();
         $this->entityManager()->clear();
 
         $book = $this->entityManager()->get(Book::class, $book->id());

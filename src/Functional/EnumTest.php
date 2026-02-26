@@ -27,6 +27,7 @@ trait EnumTest
         $migration = $this->createMigrationClassContent('BackedEnums');
 
         $this->executeMigration($migration);
+        $this->checkBackedEnumMigration($migration);
 
         self::assertInstanceOf(Store::class, $this->store('backed_enum_entities'));
     }
