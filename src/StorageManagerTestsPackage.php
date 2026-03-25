@@ -6,9 +6,8 @@ namespace Medas\StorageManagerTests;
 
 use Medas\ConfigOptions\ConfigOptionsPackage;
 use Medas\ConsolePrinter\ConsolePrinterPackage;
-use Medas\Core\AsSingleton;
+use Medas\Core\{AsSingleton, BasePackage};
 use Medas\EntityManager\EntityManagerPackage;
-use Medas\ServiceManager\BasePackage;
 use Medas\StorageManager\StorageManagerPackage;
 
 class StorageManagerTestsPackage extends BasePackage
