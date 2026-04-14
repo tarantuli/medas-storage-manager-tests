@@ -68,7 +68,10 @@ trait ConsoleCommandsTest
         $configManager = service(ConfigManager::class);
         $optionController = service(OptionController::class);
         $path = $optionController->getPath(service(EntityDirectories::class));
-        $this->originalEntityDirectories = $configManager->getValue($path);
+
+        $this->originalEntityDirectories = $configManager->hasValue($path)
+            ? $configManager->getValue($path)
+            : null;
 
         $configManager->setValue($path, [realpath(__DIR__ . '/../Entities/Migrations')]);
     }
@@ -77,7 +80,9 @@ trait ConsoleCommandsTest
     {
         $path = service(OptionController::class)->getPath(service(EntityDirectories::class));
 
-        service(ConfigManager::class)->setValue($path, $this->originalEntityDirectories);
+        if ($this->originalEntityDirectories) {
+            service(ConfigManager::class)->setValue($path, $this->originalEntityDirectories);
+        }
 
         foreach (glob($this->getDirectory() . '/*') as $file) {
             if (is_file($file)) {
