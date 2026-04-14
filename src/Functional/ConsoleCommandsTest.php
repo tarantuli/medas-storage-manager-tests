@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests\Functional;
 
 use Medas\ConfigOptions\OptionController;
+use Medas\Console\Commands\CommandInput;
 use Medas\Core\Interfaces\ConfigManager;
 use Medas\EntityManager\ConfigOptions\EntityDirectories;
 use Medas\StorageManager\{
@@ -41,7 +42,7 @@ trait ConsoleCommandsTest
 
         $this->makeMigration();
 
-        service(MigrateCommand::class)->process([]);
+        service(MigrateCommand::class)->process(new CommandInput([], []));
 
         self::assertCount(
             $aPrioriCount + 1,
@@ -57,7 +58,7 @@ trait ConsoleCommandsTest
 
         ob_start();
 
-        service(MakeMigrationCommand::class)->process([]);
+        service(MakeMigrationCommand::class)->process(new CommandInput([], []));
 
         ob_end_clean();
     }
