@@ -56,7 +56,7 @@ trait TestStorage
             throw new Exceptions\FailedToReadClassNameFromMigrationContent($migration);
         }
 
-        $directory = __DIR__ . DIRECTORY_SEPARATOR . 'migrations';
+        $directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'medas-test-migrations';
         $fileName = $directory . DIRECTORY_SEPARATOR . $match[1] . '.php';
 
         // Prepare the migration test directory
