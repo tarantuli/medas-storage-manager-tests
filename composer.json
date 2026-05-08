@@ -19,9 +19,12 @@
     "morphp/medas-events": "^3",
     "morphp/medas-migration-builder": "^1",
     "morphp/medas-service-manager": "^3",
-    "morphp/medas-storage-manager": "^4",
     "php": "^8.4",
     "phpunit/phpunit": "^10"
+  },
+  "_comment": "medas-storage-manager is intentionally in require-dev rather than require to avoid a circular dependency when storage-manager installs this package via a path repository",
+  "require-dev": {
+    "morphp/medas-storage-manager": "^4"
   },
   "autoload": {
     "psr-4": {
