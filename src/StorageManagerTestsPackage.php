@@ -8,6 +8,7 @@ use Medas\ConfigOptions\ConfigOptionsPackage;
 use Medas\ConsolePrinter\ConsolePrinterPackage;
 use Medas\Core\{AsSingleton, BasePackage};
 use Medas\EntityManager\EntityManagerPackage;
+use Medas\Events\EventsPackage;
 use Medas\StorageManager\StorageManagerPackage;
 
 class StorageManagerTestsPackage extends BasePackage
@@ -20,6 +21,7 @@ class StorageManagerTestsPackage extends BasePackage
             ConfigOptionsPackage::instance(),
             ConsolePrinterPackage::instance(),
             EntityManagerPackage::instance(),
+            EventsPackage::instance(),
             StorageManagerPackage::instance(),
         ];
     }
