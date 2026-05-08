@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Unit;
 
-use Medas\Core\Interfaces\ServiceConfig;
 use Medas\EntityManager\{EntityManager, MetaDataManager};
 use Medas\StorageManager\{Shared\ValueSerializer, StorageManager};
 use Medas\StorageManagerTests\Fake\{
@@ -23,7 +22,6 @@ use Medas\StorageManagerTests\Fake\{
     FakeStorageController,
     InMemoryDatabase
 };
-use Medas\StorageManagerTests\StorageManagerTestsPackage;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseHappyPathTest extends TestCase
@@ -40,8 +38,6 @@ abstract class BaseHappyPathTest extends TestCase
 
     protected function setUp(): void
     {
-        StorageManagerTestsPackage::instance()->initialize(service(ServiceConfig::class));
-
         $this->db = new InMemoryDatabase();
         $db = $this->db;
         $storageManager = service(StorageManager::class);
@@ -70,8 +66,8 @@ abstract class BaseHappyPathTest extends TestCase
             $valueSerializer,
         );
 
-        $storageManager->add(new FakeStorage('default'));
         $storageManager->registerController($this->controller);
+        $storageManager->add(new FakeStorage('default'));
 
         $this->entityManager = service(EntityManager::class);
 
