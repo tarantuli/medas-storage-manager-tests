@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Fake;
 
-use Medas\StorageManager\{Interfaces\ActionExecutor, UnitOfWork\Action, UnitOfWork\ActionSet};
+use Medas\StorageManager\{
+    Entities\LastInsertIdPlaceholder,
+    Interfaces\ActionExecutor,
+    UnitOfWork\Action,
+    UnitOfWork\ActionSet
+};
 
 readonly class FakeActionExecutor implements ActionExecutor
 {
@@ -32,11 +37,26 @@ readonly class FakeActionExecutor implements ActionExecutor
 
     private function handleInsert(Actions\FakeInsertAction $action, ActionSet|null $actionSet): void
     {
-        $id = $this->db->insert($action->storeName, $action->values);
+        $values = $this->resolvePlaceholders($action->values, $actionSet);
+        $id = $this->db->insert($action->storeName, $values);
 
         if ($actionSet !== null) {
             $actionSet->lastInsertId = $id;
         }
+    }
+
+    private function resolvePlaceholders(array $values, ActionSet|null $actionSet): array
+    {
+        // LastInsertIdPlaceholder is used for dependent store records in multi-table
+        // inheritance. Resolve it to the last generated id so the dependent record
+        // carries the same id as the primary record it belongs to.
+        foreach ($values as $key => $value) {
+            if ($value instanceof LastInsertIdPlaceholder) {
+                $values[$key] = $actionSet?->lastInsertId ?? $this->db->lastInsertId;
+            }
+        }
+
+        return $values;
     }
 
     private function handleUpdate(Actions\FakeUpdateAction $action): void
@@ -53,7 +73,7 @@ readonly class FakeActionExecutor implements ActionExecutor
     {
         $records = $this->db->find($action->storeNames[0], $action->conditions);
 
-        // Merge data from additional stores for multi-table inheritance
+        // Merge in data from additional stores for multi-table inheritance
         if (count($action->storeNames) > 1) {
             foreach ($records as $i => $record) {
                 foreach (array_slice($action->storeNames, 1) as $joinedStore) {

@@ -15,4 +15,9 @@ class WeaponCard extends ItemCard
     {
         $this->itemType = 'weapon';
     }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
 }

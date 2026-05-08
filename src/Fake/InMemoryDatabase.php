@@ -40,7 +40,16 @@ class InMemoryDatabase
 
     public function insert(string $storeName, array $values): int
     {
-        $id = ++$this->sequences[$storeName];
+        // If the values already contain an id (e.g. resolved from a
+        // LastInsertIdPlaceholder for a dependent store), use that id instead
+        // of auto-generating a new one.
+        if (array_key_exists('id', $values) && $values['id'] !== null) {
+            $id = (int) $values['id'];
+        }
+        else {
+            $id = ++$this->sequences[$storeName];
+        }
+
         $this->stores[$storeName][$id] = array_merge(['id' => $id], $values);
         $this->lastInsertId = $id;
 
