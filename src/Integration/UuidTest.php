@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
 use Medas\Core\Interfaces\Uuid;
 use Medas\StorageManager\Interfaces\Store;
@@ -13,7 +13,7 @@ trait UuidTest
 {
     use TestStorage;
 
-    private const TABLE_NAME = 'uuid_posts';
+    private const string TABLE_NAME = 'uuid_posts';
 
     public function testCreateTable(): void
     {

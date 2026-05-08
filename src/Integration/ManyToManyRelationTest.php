@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
 use Medas\StorageManagerTests\Entities\ManyToMany\{Book, Label, Labels};
 use Medas\StorageManagerTests\TestStorage;

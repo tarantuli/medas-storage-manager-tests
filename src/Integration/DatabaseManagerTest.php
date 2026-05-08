@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
 use Medas\StorageManager\Interfaces\Storage;
 use Medas\StorageManagerTests\TestStorage;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
 use Medas\StorageManager\Interfaces\Store;
 use Medas\StorageManagerTests\Entities\Attributes\TimestampedPost;
@@ -12,7 +12,7 @@ trait TimestampsTest
 {
     use TestStorage;
 
-    private const TS_TABLE_NAME = 'timestamped_posts';
+    private const string TS_TABLE_NAME = 'timestamped_posts';
 
     public function testCreateTsTable(): void
     {

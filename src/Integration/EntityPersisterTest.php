@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
 use Medas\Core\Types\Uuid;
 use Medas\EntityManager\Repository;

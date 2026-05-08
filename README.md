@@ -115,7 +115,7 @@ use Medas\StorageManager\{
     Interfaces\Store,
     StorageManager
 };
-use Medas\StorageManagerTests\Functional\AllTests;
+use Medas\StorageManagerTests\Integration\AllTests;
 use PHPUnit\Framework\TestCase;
 
 class FunctionalTest extends TestCase
@@ -196,7 +196,7 @@ class FunctionalTest extends TestCase
 `Functional\AllTests` composes every trait. If your driver only supports a subset of features, pick only what you need:
 
 ```php
-use Medas\StorageManagerTests\Functional\{
+use Medas\StorageManagerTests\Integration\{
     DatabaseManagerTest,
     EntityPersisterTest,
     HydratorTest,

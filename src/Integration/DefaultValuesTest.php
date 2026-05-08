@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
-use Medas\StorageManager\Structure\{Blueprint, EntityStructureFinder};
+use Medas\MigrationBuilder\Structure\{Blueprint, EntityBlueprintBuilder};
 use Medas\StorageManagerTests\Entities\Structure\EntityWithDefaultValues;
 use Medas\StorageManagerTests\TestStorage;
 
@@ -14,7 +14,7 @@ trait DefaultValuesTest
 
     public function testStructureFinder(): Blueprint
     {
-        $blueprint = service(EntityStructureFinder::class)->find(EntityWithDefaultValues::class);
+        $blueprint = service(EntityBlueprintBuilder::class)->find(EntityWithDefaultValues::class);
 
         self::assertInstanceOf(
             Blueprint\Field::class,

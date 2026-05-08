@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Medas\StorageManagerTests\Functional;
+namespace Medas\StorageManagerTests\Integration;
 
 use Medas\ConfigOptions\OptionController;
 use Medas\Console\Commands\CommandInput;
 use Medas\Core\Interfaces\ConfigManager;
 use Medas\EntityManager\ConfigOptions\EntityDirectories;
+use Medas\MigrationBuilder\ConsoleCommands\MakeMigrationCommand;
 use Medas\StorageManager\{
     ConfigOptions\MigrationDirectory,
-    ConsoleCommands\MakeMigrationCommand,
     ConsoleCommands\MigrateCommand,
     Migrations\MigrationManager
 };

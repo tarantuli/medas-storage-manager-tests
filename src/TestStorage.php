@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests;
 
 use Medas\EntityManager\EntityManager;
+use Medas\MigrationBuilder\{MigrationFactory, MigrationFactory\Settings};
 use Medas\StorageManager\{
     Interfaces\Storage,
     Interfaces\StorageController,
     Interfaces\Store,
-    Migrations\MigrationBuildManager,
-    Migrations\MigrationManager,
-    Migrations\Settings
+    Migrations\MigrationManager
 };
 
 trait TestStorage
@@ -35,7 +34,7 @@ trait TestStorage
 
     protected function createMigrationClassContent(string $directory): string|null
     {
-        $buildManager = service(MigrationBuildManager::class);
+        $buildManager = service(MigrationFactory::class);
         $path = __DIR__ . '/Entities/' . $directory;
         $realDirectory = realpath($path);
 

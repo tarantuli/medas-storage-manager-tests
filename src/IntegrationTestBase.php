@@ -12,9 +12,9 @@ use Medas\StorageManager\{
 };
 use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends TestCase
+class IntegrationTestBase extends TestCase
 {
-    use Functional\AllTests;
+    use Integration\AllTests;
 
     private Storage $storage;
     private StorageController $controller;
