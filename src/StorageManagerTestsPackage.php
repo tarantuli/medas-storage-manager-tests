@@ -9,6 +9,7 @@ use Medas\ConsolePrinter\ConsolePrinterPackage;
 use Medas\Core\{AsSingleton, BasePackage};
 use Medas\EntityManager\EntityManagerPackage;
 use Medas\Events\EventsPackage;
+use Medas\RamseyUuidBridge\RamseyUuidBridgePackage;
 use Medas\StorageManager\StorageManagerPackage;
 
 class StorageManagerTestsPackage extends BasePackage
@@ -22,6 +23,7 @@ class StorageManagerTestsPackage extends BasePackage
             ConsolePrinterPackage::instance(),
             EntityManagerPackage::instance(),
             EventsPackage::instance(),
+            RamseyUuidBridgePackage::instance(),
             StorageManagerPackage::instance(),
         ];
     }
