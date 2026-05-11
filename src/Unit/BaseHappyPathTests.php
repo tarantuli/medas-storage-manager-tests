@@ -24,7 +24,7 @@ use Medas\StorageManagerTests\Fake\{
 };
 use PHPUnit\Framework\TestCase;
 
-abstract class BaseHappyPathTest extends TestCase
+abstract class BaseHappyPathTests extends TestCase
 {
     /**
      * Override to add stores to $this->db before each test.

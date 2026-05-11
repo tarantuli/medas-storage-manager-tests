@@ -17,12 +17,12 @@ use Medas\EntityManager\Attributes\{
 class Card implements HasId
 {
     #[Id, IsGeneratedValue]
-    protected int $id;
+    protected int|null $id = null;
 
     #[IsUnique]
     protected string $name;
 
-    public function id(): int
+    public function id(): int|null
     {
         return $this->id;
     }

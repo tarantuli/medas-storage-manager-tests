@@ -14,7 +14,7 @@ use Medas\StorageManager\{
 use Medas\StorageManagerTests\Entities\Inheritance\WeaponCard;
 use Medas\StorageManagerTests\Fake\FakeStorage;
 
-class UnitOfWorkOrderingTest extends BaseHappyPathTest
+class UnitOfWorkOrderingTest extends BaseHappyPathTests
 {
     public function testUnitOfWorkSortsByPriority(): void
     {

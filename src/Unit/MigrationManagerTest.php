@@ -7,7 +7,7 @@ namespace Medas\StorageManagerTests\Unit;
 use Medas\StorageManager\Migrations\MigrationManager;
 use Medas\StorageManagerTests\TestMigrations\TestMigration;
 
-class MigrationManagerTest extends BaseHappyPathTest
+class MigrationManagerTest extends BaseHappyPathTests
 {
     private const string MIGRATIONS_STORE = 'medas_migrations';
 

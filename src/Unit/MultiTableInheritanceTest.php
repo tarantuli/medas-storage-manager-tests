@@ -6,7 +6,7 @@ namespace Medas\StorageManagerTests\Unit;
 
 use Medas\StorageManagerTests\Entities\Inheritance\{ArmorCard, WeaponCard};
 
-class MultiTableInheritanceTest extends BaseHappyPathTest
+class MultiTableInheritanceTest extends BaseHappyPathTests
 {
     public function testWeaponCardStoresBasePropertiesInParentStore(): void
     {

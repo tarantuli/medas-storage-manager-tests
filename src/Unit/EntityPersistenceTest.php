@@ -6,7 +6,7 @@ namespace Medas\StorageManagerTests\Unit;
 
 use Medas\StorageManagerTests\Entities\Migrations\StoredEntity;
 
-class EntityPersistenceTest extends BaseHappyPathTest
+class EntityPersistenceTest extends BaseHappyPathTests
 {
     public function testCreateStoresRecord(): void
     {
