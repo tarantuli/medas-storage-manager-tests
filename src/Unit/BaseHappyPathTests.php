@@ -32,19 +32,42 @@ abstract class BaseHappyPathTests extends TestCase
      */
     abstract protected function setUpStores(): void;
 
+    // Shared across all subclasses — declared on the base class and accessed via
+    // BaseHappyPathTests:: to avoid PHP's per-subclass static scoping, which would
+    // cause each test class to initialise its own copy and break the StorageManager
+    // controller cache (keyed by storage name, never invalidated).
+    protected static InMemoryDatabase|null $sharedDb = null;
+    protected static FakeStorageController|null $sharedController = null;
     protected InMemoryDatabase $db;
     protected FakeStorageController $controller;
     protected EntityManager $entityManager;
 
     protected function setUp(): void
     {
-        $this->db = new InMemoryDatabase();
-        $db = $this->db;
+        if (BaseHappyPathTests::$sharedDb === null) {
+            $this->initializeSharedInfrastructure();
+        }
+
+        $this->db = BaseHappyPathTests::$sharedDb;
+        $this->controller = BaseHappyPathTests::$sharedController;
+
+        $this->db->reset();
+
+        $this->entityManager = service(EntityManager::class);
+
+        $this->entityManager->autoPersistOnCreate(true, false);
+        $this->entityManager->clear();
+        $this->setUpStores();
+    }
+
+    private function initializeSharedInfrastructure(): void
+    {
+        BaseHappyPathTests::$sharedDb = new InMemoryDatabase();
         $storageManager = service(StorageManager::class);
         $metaDataManager = service(MetaDataManager::class);
         $valueSerializer = service(ValueSerializer::class);
-        $filteredFetcher = new FakeFilteredFetcher($db);
-        $collectionFetcher = new FakeCollectionRecordFetcher($db);
+        $filteredFetcher = new FakeFilteredFetcher(BaseHappyPathTests::$sharedDb);
+        $collectionFetcher = new FakeCollectionRecordFetcher(BaseHappyPathTests::$sharedDb);
         $recordFetchers = new FakeRecordFetchers($filteredFetcher, $collectionFetcher);
 
         $actionBuilders = new FakeActionBuilders(
@@ -56,21 +79,17 @@ abstract class BaseHappyPathTests extends TestCase
             new FakeUpdateBuilder(),
         );
 
-        $executor = new FakeActionExecutor($db);
+        $executor = new FakeActionExecutor(BaseHappyPathTests::$sharedDb);
 
-        $this->controller = new FakeStorageController(
-            $db,
+        BaseHappyPathTests::$sharedController = new FakeStorageController(
+            BaseHappyPathTests::$sharedDb,
             $actionBuilders,
             $executor,
             $recordFetchers,
             $valueSerializer,
         );
 
-        $storageManager->registerController($this->controller);
+        $storageManager->registerController(BaseHappyPathTests::$sharedController);
         $storageManager->add(new FakeStorage('default'));
-
-        $this->entityManager = service(EntityManager::class);
-
-        $this->setUpStores();
     }
 }

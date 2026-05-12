@@ -50,7 +50,7 @@ class InMemoryDatabase
             $id = ++$this->sequences[$storeName];
         }
 
-        $this->stores[$storeName][$id] = array_merge(['id' => $id], $values);
+        $this->stores[$storeName][$id] = array_merge($values, ['id' => $id]);
         $this->lastInsertId = $id;
 
         return $id;

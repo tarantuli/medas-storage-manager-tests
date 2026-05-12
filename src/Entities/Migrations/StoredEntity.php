@@ -17,7 +17,7 @@ class StoredEntity
     public string $name;
 
     #[DateTime]
-    public \DateTime|null $createdAt;
+    public \DateTime|null $createdAt = null;
 
     public string $defaultString = 'default string';
     public int $defaultInteger = 10;
