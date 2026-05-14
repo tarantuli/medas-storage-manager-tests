@@ -71,7 +71,7 @@ class UnitOfWorkOrderingTest extends BaseHappyPathTests
 
     public function testMultiTableInheritancePrimaryStoreInsertedFirst(): void
     {
-        // When EntityPersister queues creates for a multi-table entity, the
+        // When EntityPersister queues "create" queries for a multi-table entity, the
         // primary store action (CreateRecord) must execute before the dependent
         // store actions (CreateDependentRecord) so that LastInsertIdPlaceholder
         // can be resolved correctly.

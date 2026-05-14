@@ -40,7 +40,7 @@ class InMemoryDatabase
 
     public function insert(string $storeName, array $values): int
     {
-        // If the values already contain an id (e.g. resolved from a
+        // If the values already contain an id (e.g., resolved from a
         // LastInsertIdPlaceholder for a dependent store), use that id instead
         // of auto-generating a new one.
         if (array_key_exists('id', $values) && $values['id'] !== null) {

@@ -39,6 +39,11 @@ readonly class FakeStorageController implements StorageController
         return $this->storage;
     }
 
+    public function initialize(): void
+    {
+        // Do nothing
+    }
+
     public function handles(Storage $storage): bool
     {
         /** @noinspection PhpConditionAlreadyCheckedInspection */

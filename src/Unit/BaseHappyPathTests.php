@@ -34,7 +34,7 @@ abstract class BaseHappyPathTests extends TestCase
 
     // Shared across all subclasses — declared on the base class and accessed via
     // BaseHappyPathTests:: to avoid PHP's per-subclass static scoping, which would
-    // cause each test class to initialise its own copy and break the StorageManager
+    // cause each test class to initialize its own copy and break the StorageManager
     // controller cache (keyed by storage name, never invalidated).
     protected static InMemoryDatabase|null $sharedDb = null;
     protected static FakeStorageController|null $sharedController = null;
