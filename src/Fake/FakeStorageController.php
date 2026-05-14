@@ -39,7 +39,7 @@ readonly class FakeStorageController implements StorageController
         return $this->storage;
     }
 
-    public function initialize(): void
+    public function initialize(Storage $storage): void
     {
         // Do nothing
     }

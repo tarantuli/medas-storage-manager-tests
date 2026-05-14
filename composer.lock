@@ -2767,16 +2767,16 @@
         },
         {
             "name": "morphp/medas-storage-manager",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tarantuli/medas-storage-manager.git",
-                "reference": "3d19a2835dd89b95b16dcd85b42b8179d9f1df4d"
+                "reference": "b9933780e90be41707edd21a415dd16a17b2b8ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-storage-manager/zipball/3d19a2835dd89b95b16dcd85b42b8179d9f1df4d",
-                "reference": "3d19a2835dd89b95b16dcd85b42b8179d9f1df4d",
+                "url": "https://api.github.com/repos/tarantuli/medas-storage-manager/zipball/b9933780e90be41707edd21a415dd16a17b2b8ab",
+                "reference": "b9933780e90be41707edd21a415dd16a17b2b8ab",
                 "shasum": ""
             },
             "require": {
@@ -2812,10 +2812,10 @@
                 "storage"
             ],
             "support": {
-                "source": "https://github.com/tarantuli/medas-storage-manager/tree/v4.3.0",
+                "source": "https://github.com/tarantuli/medas-storage-manager/tree/v4.3.1",
                 "issues": "https://github.com/tarantuli/medas-storage-manager/issues"
             },
-            "time": "2026-05-14T12:08:06+00:00"
+            "time": "2026-05-14T14:20:34+00:00"
         }
     ],
     "aliases": [],
