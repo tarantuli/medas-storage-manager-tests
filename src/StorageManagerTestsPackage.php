@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Medas\StorageManagerTests;
 
 use Medas\ConfigOptions\ConfigOptionsPackage;
-use Medas\ConsolePrinter\ConsolePrinterPackage;
 use Medas\Core\{AsSingleton, BasePackage};
 use Medas\EntityManager\EntityManagerPackage;
 use Medas\Events\EventsPackage;
@@ -20,7 +19,6 @@ class StorageManagerTestsPackage extends BasePackage
     {
         return [
             ConfigOptionsPackage::instance(),
-            ConsolePrinterPackage::instance(),
             EntityManagerPackage::instance(),
             EventsPackage::instance(),
             RamseyUuidBridgePackage::instance(),
