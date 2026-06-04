@@ -4,67 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c9c3bce2417a1d79c40474e2d5eae05",
+    "content-hash": "7e3808406c74cf9254a59bc9401c929c",
     "packages": [
         {
-            "name": "brick/math",
-            "version": "0.14.8",
+            "name": "morphp/medas-cache",
+            "version": "v3.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/brick/math.git",
-                "reference": "63422359a44b7f06cae63c3b429b59e8efcc0629"
+                "url": "https://github.com/tarantuli/medas-cache.git",
+                "reference": "5d0ab7b79f9c4ca4c805a50616d3beeebd38c861"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/63422359a44b7f06cae63c3b429b59e8efcc0629",
-                "reference": "63422359a44b7f06cae63c3b429b59e8efcc0629",
+                "url": "https://api.github.com/repos/tarantuli/medas-cache/zipball/5d0ab7b79f9c4ca4c805a50616d3beeebd38c861",
+                "reference": "5d0ab7b79f9c4ca4c805a50616d3beeebd38c861",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.2"
+                "morphp/medas-core": "^3",
+                "morphp/medas-file-system": "^3",
+                "php": "^8.4"
             },
             "require-dev": {
-                "php-coveralls/php-coveralls": "^2.2",
-                "phpstan/phpstan": "2.1.22",
-                "phpunit/phpunit": "^11.5"
+                "morphp/medas-service-manager": "^3",
+                "phpunit/phpunit": "^10"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Brick\\Math\\": "src/"
+                    "Medas\\Cache\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
+            "autoload-dev": {
+                "psr-4": {
+                    "Medas\\CacheTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
             ],
-            "description": "Arbitrary-precision arithmetic library",
+            "description": "Contains a base cache and a file system cache implementation",
             "keywords": [
-                "Arbitrary-precision",
-                "BigInteger",
-                "BigRational",
-                "arithmetic",
-                "bigdecimal",
-                "bignum",
-                "bignumber",
-                "brick",
-                "decimal",
-                "integer",
-                "math",
-                "mathematics",
-                "rational"
+                "backend",
+                "storage"
             ],
             "support": {
-                "issues": "https://github.com/brick/math/issues",
-                "source": "https://github.com/brick/math/tree/0.14.8"
+                "source": "https://github.com/tarantuli/medas-cache/tree/v3.1.3",
+                "issues": "https://github.com/tarantuli/medas-cache/issues"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/BenMorel",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-02-10T14:33:43+00:00"
+            "time": "2026-05-28T10:41:43+00:00"
         },
         {
             "name": "morphp/medas-config-options",
@@ -271,17 +262,67 @@
             "time": "2026-06-03T12:17:11+00:00"
         },
         {
-            "name": "morphp/medas-events",
-            "version": "v3.0.2",
+            "name": "morphp/medas-file-builder",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tarantuli/medas-events.git",
-                "reference": "74be9fd08e0a07b987f444e94bf68cddbfb6dd35"
+                "url": "https://github.com/tarantuli/medas-file-builder.git",
+                "reference": "3a836bcdb037f01758047c7078233aa56e10b44d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-events/zipball/74be9fd08e0a07b987f444e94bf68cddbfb6dd35",
-                "reference": "74be9fd08e0a07b987f444e94bf68cddbfb6dd35",
+                "url": "https://api.github.com/repos/tarantuli/medas-file-builder/zipball/3a836bcdb037f01758047c7078233aa56e10b44d",
+                "reference": "3a836bcdb037f01758047c7078233aa56e10b44d",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-core": "^3",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "morphp/medas-object-instantiator": "^3",
+                "morphp/medas-service-manager": "^3",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Medas\\FileBuilder\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Medas\\FileBuilderTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas file builder",
+            "keywords": [
+                "backend"
+            ],
+            "support": {
+                "source": "https://github.com/tarantuli/medas-file-builder/tree/v4.0.1",
+                "issues": "https://github.com/tarantuli/medas-file-builder/issues"
+            },
+            "time": "2026-06-03T12:28:37+00:00"
+        },
+        {
+            "name": "morphp/medas-file-system",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tarantuli/medas-file-system.git",
+                "reference": "16d123daeb8a0f8562b4714976fe9b2d1e2e137b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-file-system/zipball/16d123daeb8a0f8562b4714976fe9b2d1e2e137b",
+                "reference": "16d123daeb8a0f8562b4714976fe9b2d1e2e137b",
                 "shasum": ""
             },
             "require": {
@@ -295,12 +336,12 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Medas\\Events\\": "src/"
+                    "Medas\\FileSystem\\": "src/"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Medas\\EventsTest\\": "tests/"
+                    "Medas\\FileSystemTest\\": "tests/"
                 }
             },
             "authors": [
@@ -309,15 +350,70 @@
                     "email": "patrick@morphp.nl"
                 }
             ],
-            "description": "PSR-14 event dispatcher for the Medas framework with lazy dispatch and attribute-based listener discovery",
+            "description": "Medas file system",
             "keywords": [
-                "events"
+                "backend",
+                "storage"
             ],
             "support": {
-                "source": "https://github.com/tarantuli/medas-events/tree/v3.0.2",
-                "issues": "https://github.com/tarantuli/medas-events/issues"
+                "source": "https://github.com/tarantuli/medas-file-system/tree/v3.0.4",
+                "issues": "https://github.com/tarantuli/medas-file-system/issues"
             },
-            "time": "2026-06-03T12:20:17+00:00"
+            "time": "2026-06-03T12:31:08+00:00"
+        },
+        {
+            "name": "morphp/medas-migration-builder",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tarantuli/medas-migration-builder.git",
+                "reference": "36cb9671ad2e71d1e77f7f5db2295019fe86bec9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-migration-builder/zipball/36cb9671ad2e71d1e77f7f5db2295019fe86bec9",
+                "reference": "36cb9671ad2e71d1e77f7f5db2295019fe86bec9",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-console": "^3",
+                "morphp/medas-core": "^3",
+                "morphp/medas-entity-manager": "^3",
+                "morphp/medas-file-builder": "^4",
+                "morphp/medas-storage-manager": "^4",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "morphp/medas-object-instantiator": "^3",
+                "morphp/medas-service-manager": "^3",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Medas\\MigrationBuilder\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Medas\\MigrationBuilderTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas migration builder",
+            "keywords": [
+                "storage"
+            ],
+            "support": {
+                "source": "https://github.com/tarantuli/medas-migration-builder/tree/v1.0.7",
+                "issues": "https://github.com/tarantuli/medas-migration-builder/issues"
+            },
+            "time": "2026-06-03T13:08:09+00:00"
         },
         {
             "name": "morphp/medas-object-to-array-serializer",
@@ -476,56 +572,6 @@
             "time": "2026-06-03T14:29:15+00:00"
         },
         {
-            "name": "morphp/medas-ramsey-uuid-bridge",
-            "version": "v3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tarantuli/medas-ramsey-uuid-bridge.git",
-                "reference": "72015020c19c965dbf1533653718f23eea3bb0ba"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-ramsey-uuid-bridge/zipball/72015020c19c965dbf1533653718f23eea3bb0ba",
-                "reference": "72015020c19c965dbf1533653718f23eea3bb0ba",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-core": "^3",
-                "php": "^8.4",
-                "ramsey/uuid": "^4.6"
-            },
-            "require-dev": {
-                "morphp/medas-service-manager": "^3",
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Medas\\RamseyUuidBridge\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Medas\\RamseyUuidBridgeTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas ramsey/uuid bridge",
-            "keywords": [
-                "data manipulation"
-            ],
-            "support": {
-                "source": "https://github.com/tarantuli/medas-ramsey-uuid-bridge/tree/v3.0.3",
-                "issues": "https://github.com/tarantuli/medas-ramsey-uuid-bridge/issues"
-            },
-            "time": "2026-06-03T14:30:50+00:00"
-        },
-        {
             "name": "morphp/medas-service-manager",
             "version": "v3.4.3",
             "source": {
@@ -575,6 +621,57 @@
                 "issues": "https://github.com/tarantuli/medas-service-manager/issues"
             },
             "time": "2026-06-03T14:47:54+00:00"
+        },
+        {
+            "name": "morphp/medas-storage-manager",
+            "version": "v4.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tarantuli/medas-storage-manager.git",
+                "reference": "e93dbc9a8747fd76586d257ca620328413f8d042"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-storage-manager/zipball/e93dbc9a8747fd76586d257ca620328413f8d042",
+                "reference": "e93dbc9a8747fd76586d257ca620328413f8d042",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-cache": "^3",
+                "morphp/medas-config-options": "^3",
+                "morphp/medas-console": "^3",
+                "morphp/medas-core": "^3",
+                "morphp/medas-entity-manager": "^3",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "morphp/medas-config-manager": "^3",
+                "morphp/medas-object-instantiator": "^3",
+                "morphp/medas-service-manager": "^3",
+                "morphp/medas-storage-manager-tests": "*",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Medas\\StorageManager\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas storage manager",
+            "keywords": [
+                "storage"
+            ],
+            "support": {
+                "source": "https://github.com/tarantuli/medas-storage-manager/tree/v4.3.5",
+                "issues": "https://github.com/tarantuli/medas-storage-manager/issues"
+            },
+            "time": "2026-06-03T14:49:15+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1291,160 +1388,6 @@
                 "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
             },
             "time": "2019-01-08T18:20:26+00:00"
-        },
-        {
-            "name": "ramsey/collection",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ramsey/collection.git",
-                "reference": "344572933ad0181accbf4ba763e85a0306a8c5e2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/collection/zipball/344572933ad0181accbf4ba763e85a0306a8c5e2",
-                "reference": "344572933ad0181accbf4ba763e85a0306a8c5e2",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "captainhook/plugin-composer": "^5.3",
-                "ergebnis/composer-normalize": "^2.45",
-                "fakerphp/faker": "^1.24",
-                "hamcrest/hamcrest-php": "^2.0",
-                "jangregor/phpstan-prophecy": "^2.1",
-                "mockery/mockery": "^1.6",
-                "php-parallel-lint/php-console-highlighter": "^1.0",
-                "php-parallel-lint/php-parallel-lint": "^1.4",
-                "phpspec/prophecy-phpunit": "^2.3",
-                "phpstan/extension-installer": "^1.4",
-                "phpstan/phpstan": "^2.1",
-                "phpstan/phpstan-mockery": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^10.5",
-                "ramsey/coding-standard": "^2.3",
-                "ramsey/conventional-commits": "^1.6",
-                "roave/security-advisories": "dev-latest"
-            },
-            "type": "library",
-            "extra": {
-                "captainhook": {
-                    "force-install": true
-                },
-                "ramsey/conventional-commits": {
-                    "configFile": "conventional-commits.json"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ramsey\\Collection\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Ramsey",
-                    "email": "ben@benramsey.com",
-                    "homepage": "https://benramsey.com"
-                }
-            ],
-            "description": "A PHP library for representing and manipulating collections.",
-            "keywords": [
-                "array",
-                "collection",
-                "hash",
-                "map",
-                "queue",
-                "set"
-            ],
-            "support": {
-                "issues": "https://github.com/ramsey/collection/issues",
-                "source": "https://github.com/ramsey/collection/tree/2.1.1"
-            },
-            "time": "2025-03-22T05:38:12+00:00"
-        },
-        {
-            "name": "ramsey/uuid",
-            "version": "4.9.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ramsey/uuid.git",
-                "reference": "8429c78ca35a09f27565311b98101e2826affde0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/8429c78ca35a09f27565311b98101e2826affde0",
-                "reference": "8429c78ca35a09f27565311b98101e2826affde0",
-                "shasum": ""
-            },
-            "require": {
-                "brick/math": "^0.8.16 || ^0.9 || ^0.10 || ^0.11 || ^0.12 || ^0.13 || ^0.14",
-                "php": "^8.0",
-                "ramsey/collection": "^1.2 || ^2.0"
-            },
-            "replace": {
-                "rhumsaa/uuid": "self.version"
-            },
-            "require-dev": {
-                "captainhook/captainhook": "^5.25",
-                "captainhook/plugin-composer": "^5.3",
-                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-                "ergebnis/composer-normalize": "^2.47",
-                "mockery/mockery": "^1.6",
-                "paragonie/random-lib": "^2",
-                "php-mock/php-mock": "^2.6",
-                "php-mock/php-mock-mockery": "^1.5",
-                "php-parallel-lint/php-parallel-lint": "^1.4.0",
-                "phpbench/phpbench": "^1.2.14",
-                "phpstan/extension-installer": "^1.4",
-                "phpstan/phpstan": "^2.1",
-                "phpstan/phpstan-mockery": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^9.6",
-                "slevomat/coding-standard": "^8.18",
-                "squizlabs/php_codesniffer": "^3.13"
-            },
-            "suggest": {
-                "ext-bcmath": "Enables faster math with arbitrary-precision integers using BCMath.",
-                "ext-gmp": "Enables faster math with arbitrary-precision integers using GMP.",
-                "ext-uuid": "Enables the use of PeclUuidTimeGenerator and PeclUuidRandomGenerator.",
-                "paragonie/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
-                "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
-            },
-            "type": "library",
-            "extra": {
-                "captainhook": {
-                    "force-install": true
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "Ramsey\\Uuid\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A PHP library for generating and working with universally unique identifiers (UUIDs).",
-            "keywords": [
-                "guid",
-                "identifier",
-                "uuid"
-            ],
-            "support": {
-                "issues": "https://github.com/ramsey/uuid/issues",
-                "source": "https://github.com/ramsey/uuid/tree/4.9.2"
-            },
-            "time": "2025-12-14T04:43:48+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2450,264 +2393,7 @@
             "time": "2025-11-17T20:03:58+00:00"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "morphp/medas-cache",
-            "version": "v3.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tarantuli/medas-cache.git",
-                "reference": "5d0ab7b79f9c4ca4c805a50616d3beeebd38c861"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-cache/zipball/5d0ab7b79f9c4ca4c805a50616d3beeebd38c861",
-                "reference": "5d0ab7b79f9c4ca4c805a50616d3beeebd38c861",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-core": "^3",
-                "morphp/medas-file-system": "^3",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "morphp/medas-service-manager": "^3",
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Medas\\Cache\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Medas\\CacheTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Contains a base cache and a file system cache implementation",
-            "keywords": [
-                "backend",
-                "storage"
-            ],
-            "support": {
-                "source": "https://github.com/tarantuli/medas-cache/tree/v3.1.3",
-                "issues": "https://github.com/tarantuli/medas-cache/issues"
-            },
-            "time": "2026-05-28T10:41:43+00:00"
-        },
-        {
-            "name": "morphp/medas-file-builder",
-            "version": "v4.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tarantuli/medas-file-builder.git",
-                "reference": "3a836bcdb037f01758047c7078233aa56e10b44d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-file-builder/zipball/3a836bcdb037f01758047c7078233aa56e10b44d",
-                "reference": "3a836bcdb037f01758047c7078233aa56e10b44d",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-core": "^3",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "morphp/medas-object-instantiator": "^3",
-                "morphp/medas-service-manager": "^3",
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Medas\\FileBuilder\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Medas\\FileBuilderTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas file builder",
-            "keywords": [
-                "backend"
-            ],
-            "support": {
-                "source": "https://github.com/tarantuli/medas-file-builder/tree/v4.0.1",
-                "issues": "https://github.com/tarantuli/medas-file-builder/issues"
-            },
-            "time": "2026-06-03T12:28:37+00:00"
-        },
-        {
-            "name": "morphp/medas-file-system",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tarantuli/medas-file-system.git",
-                "reference": "16d123daeb8a0f8562b4714976fe9b2d1e2e137b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-file-system/zipball/16d123daeb8a0f8562b4714976fe9b2d1e2e137b",
-                "reference": "16d123daeb8a0f8562b4714976fe9b2d1e2e137b",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-core": "^3",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "morphp/medas-service-manager": "^3",
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Medas\\FileSystem\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Medas\\FileSystemTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas file system",
-            "keywords": [
-                "backend",
-                "storage"
-            ],
-            "support": {
-                "source": "https://github.com/tarantuli/medas-file-system/tree/v3.0.4",
-                "issues": "https://github.com/tarantuli/medas-file-system/issues"
-            },
-            "time": "2026-06-03T12:31:08+00:00"
-        },
-        {
-            "name": "morphp/medas-migration-builder",
-            "version": "v1.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tarantuli/medas-migration-builder.git",
-                "reference": "36cb9671ad2e71d1e77f7f5db2295019fe86bec9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-migration-builder/zipball/36cb9671ad2e71d1e77f7f5db2295019fe86bec9",
-                "reference": "36cb9671ad2e71d1e77f7f5db2295019fe86bec9",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-console": "^3",
-                "morphp/medas-core": "^3",
-                "morphp/medas-entity-manager": "^3",
-                "morphp/medas-file-builder": "^4",
-                "morphp/medas-storage-manager": "^4",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "morphp/medas-object-instantiator": "^3",
-                "morphp/medas-service-manager": "^3",
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Medas\\MigrationBuilder\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Medas\\MigrationBuilderTest\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas migration builder",
-            "keywords": [
-                "storage"
-            ],
-            "support": {
-                "source": "https://github.com/tarantuli/medas-migration-builder/tree/v1.0.7",
-                "issues": "https://github.com/tarantuli/medas-migration-builder/issues"
-            },
-            "time": "2026-06-03T13:08:09+00:00"
-        },
-        {
-            "name": "morphp/medas-storage-manager",
-            "version": "v4.3.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tarantuli/medas-storage-manager.git",
-                "reference": "e93dbc9a8747fd76586d257ca620328413f8d042"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tarantuli/medas-storage-manager/zipball/e93dbc9a8747fd76586d257ca620328413f8d042",
-                "reference": "e93dbc9a8747fd76586d257ca620328413f8d042",
-                "shasum": ""
-            },
-            "require": {
-                "morphp/medas-cache": "^3",
-                "morphp/medas-config-options": "^3",
-                "morphp/medas-console": "^3",
-                "morphp/medas-core": "^3",
-                "morphp/medas-entity-manager": "^3",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "morphp/medas-config-manager": "^3",
-                "morphp/medas-object-instantiator": "^3",
-                "morphp/medas-service-manager": "^3",
-                "morphp/medas-storage-manager-tests": "*",
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Medas\\StorageManager\\": "src/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Patrick Morpey",
-                    "email": "patrick@morphp.nl"
-                }
-            ],
-            "description": "Medas storage manager",
-            "keywords": [
-                "storage"
-            ],
-            "support": {
-                "source": "https://github.com/tarantuli/medas-storage-manager/tree/v4.3.5",
-                "issues": "https://github.com/tarantuli/medas-storage-manager/issues"
-            },
-            "time": "2026-06-03T14:49:15+00:00"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
