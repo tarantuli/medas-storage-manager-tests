@@ -15,7 +15,7 @@
   "require": {
     "morphp/medas-config-options": "^3",
     "morphp/medas-console": "^3",
-    "morphp/medas-core": "^3",
+    "morphp/medas-core": "^4",
     "morphp/medas-entity-manager": "^3",
     "morphp/medas-migration-builder": "^1",
     "morphp/medas-storage-manager": "^4",
