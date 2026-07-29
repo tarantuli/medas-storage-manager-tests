@@ -19,7 +19,7 @@ readonly class FakeSelectorActionBuilder implements SelectorActionBuilder
     {
     }
 
-    public function build(Selector $selector, array $arguments): ActionSet
+    public function build(Selector $selector, array $arguments, bool $doCount = false): ActionSet
     {
         $metaData = $this->metaDataManager->get($selector->entity());
         $storage = $this->storageManager->byName($metaData->entity->storage);

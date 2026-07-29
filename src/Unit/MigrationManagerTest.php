@@ -46,7 +46,7 @@ class MigrationManagerTest extends BaseHappyPathTests
     {
         $this->migrate();
 
-        // Reset the flag — if migrate() runs again it would set it to true again
+        // Reset the flag — if migrate() runs again, it would set it to true again
         TestMigration::$wasExecuted = false;
 
         $this->migrate();

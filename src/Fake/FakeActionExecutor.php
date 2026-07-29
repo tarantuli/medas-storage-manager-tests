@@ -26,7 +26,10 @@ readonly class FakeActionExecutor implements ActionExecutor
             $action instanceof Actions\FakeUpdateAction => $this->handleUpdate($action),
             $action instanceof Actions\FakeDeleteAction => $this->handleDelete($action),
             $action instanceof Actions\FakeGetAction => $this->handleGet($action),
-            $action instanceof Actions\FakeCollectionUpdateAction => $this->handleCollectionUpdate($action),
+
+            $action instanceof Actions\FakeCollectionUpdateAction
+                => $this->handleCollectionUpdate($action),
+
             default => null,
         };
 
