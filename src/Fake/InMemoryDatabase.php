@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Fake;
 
+use Medas\Core\Attributes\Service;
+
+// One instance per test run: the fake controller writes to it, the tests read from it.
+#[Service]
 class InMemoryDatabase
 {
     /** @var array<string, array<int, array<string, mixed>>> */

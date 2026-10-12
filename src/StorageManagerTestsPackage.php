@@ -7,6 +7,7 @@ namespace Medas\StorageManagerTests;
 use Medas\ConfigOptions\ConfigOptionsPackage;
 use Medas\Core\{AsSingleton, BasePackage};
 use Medas\EntityManager\EntityManagerPackage;
+use Medas\RamseyUuidBridge\RamseyUuidBridgePackage;
 use Medas\StorageManager\StorageManagerPackage;
 
 class StorageManagerTestsPackage extends BasePackage
@@ -18,6 +19,7 @@ class StorageManagerTestsPackage extends BasePackage
         return [
             ConfigOptionsPackage::instance(),
             EntityManagerPackage::instance(),
+            RamseyUuidBridgePackage::instance(),
             StorageManagerPackage::instance(),
         ];
     }

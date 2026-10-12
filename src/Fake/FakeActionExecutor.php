@@ -40,7 +40,7 @@ readonly class FakeActionExecutor implements ActionExecutor
 
     private function handleInsert(Actions\FakeInsertAction $action, ActionSet|null $actionSet): void
     {
-        $values = $this->resolvePlaceholders($action->values, $actionSet);
+        $values = $this->resolvePlaceholders($action->values);
         $id = $this->db->insert($action->storeName, $values);
 
         if ($actionSet !== null) {
@@ -48,14 +48,13 @@ readonly class FakeActionExecutor implements ActionExecutor
         }
     }
 
-    private function resolvePlaceholders(array $values, ActionSet|null $actionSet): array
+    private function resolvePlaceholders(array $values): array
     {
         // LastInsertIdPlaceholder is used for dependent store records in multi-table
-        // inheritance. Resolve it to the last generated id so the dependent record
-        // carries the same id as the primary record it belongs to.
+        // inheritance. It reads the id its own entity got from the primary record.
         foreach ($values as $key => $value) {
             if ($value instanceof LastInsertIdPlaceholder) {
-                $values[$key] = $actionSet?->lastInsertId ?? $this->db->lastInsertId;
+                $values[$key] = $value->value();
             }
         }
 

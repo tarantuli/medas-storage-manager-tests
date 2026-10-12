@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Fake;
 
-use Medas\Core\Interfaces\Serializer;
+use Medas\Core\{Attributes\Service, Interfaces\Serializer};
+use Medas\EntityManager\MetaDataManager;
 use Medas\StorageManager\{
     Interfaces\ActionBuilders,
     Interfaces\ActionExecutor,
@@ -13,25 +14,49 @@ use Medas\StorageManager\{
     Interfaces\StorageController,
     Interfaces\Store,
     Interfaces\Transaction,
-    Shared\ValueSerializer
+    Shared\ValueSerializer,
+    StorageManager
 };
 
+// A service, so the storage manager finds it the way it finds a real driver's controller.
+// It handles the FakeStorage named "default" and keeps its rows in the shared InMemoryDatabase.
+#[Service]
 readonly class FakeStorageController implements StorageController
 {
     private FakeStorage $storage;
     private FakeTransaction $transaction;
+    private FakeActionBuilders $actionBuilders;
+    private FakeActionExecutor $actionExecutor;
+    private FakeRecordFetchers $recordFetchers;
 
     public function __construct(
-        private InMemoryDatabase   $db,
-        private FakeActionBuilders $actionBuilders,
-        private FakeActionExecutor $actionExecutor,
-        private FakeRecordFetchers $recordFetchers,
-        private ValueSerializer    $valueSerializer,
-        string                     $storageName = 'default',
+        private InMemoryDatabase $db,
+        private ValueSerializer  $valueSerializer,
+        MetaDataManager          $metaDataManager,
+        StorageManager           $storageManager,
     )
     {
-        $this->storage = new FakeStorage($storageName);
+        $this->storage = new FakeStorage('default');
         $this->transaction = new FakeTransaction();
+
+        // The other fakes are built here rather than made services, so a driver's test
+        // suite that registers this package does not find a second implementation of
+        // the storage interfaces.
+        $this->actionBuilders = new FakeActionBuilders(
+            new Builders\FakeCollectionUpdateBuilder(),
+            new Builders\FakeDeleteBuilder(),
+            new Builders\FakeGetBuilder(),
+            new Builders\FakeInsertBuilder(),
+            new Builders\FakeSelectorActionBuilder($metaDataManager, $storageManager),
+            new Builders\FakeUpdateBuilder(),
+        );
+
+        $this->actionExecutor = new FakeActionExecutor($db);
+
+        $this->recordFetchers = new FakeRecordFetchers(
+            new FakeFilteredFetcher($db),
+            new FakeCollectionRecordFetcher($db),
+        );
     }
 
     public function storage(): FakeStorage
