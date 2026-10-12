@@ -18,6 +18,9 @@ class InMemoryDatabase
 
     public int|null $lastInsertId = null;
 
+    /** @var string[] The store of each insert, in order, for tests that check the order */
+    public array $insertedStores = [];
+
     public function addStore(string $name): void
     {
         if (!array_key_exists($name, $this->stores)) {
@@ -55,6 +58,7 @@ class InMemoryDatabase
         }
 
         $this->stores[$storeName][$id] = array_merge($values, ['id' => $id]);
+        $this->insertedStores[] = $storeName;
         $this->lastInsertId = $id;
 
         return $id;
@@ -118,5 +122,6 @@ class InMemoryDatabase
         }
 
         $this->lastInsertId = null;
+        $this->insertedStores = [];
     }
 }

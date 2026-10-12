@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ad25ed6a7a4138eb342239099781620",
+    "content-hash": "f7d1f23ec363cb6f41e0331db829e86b",
     "packages": [
         {
             "name": "brick/math",
@@ -223,6 +223,59 @@
             "time": "2026-09-04T09:25:59+00:00"
         },
         {
+            "name": "morphp/medas-console-printer",
+            "version": "v5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tarantuli/medas-console-printer.git",
+                "reference": "eac0ed8142bc9441bae46134c00142664e7501ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-console-printer/zipball/eac0ed8142bc9441bae46134c00142664e7501ea",
+                "reference": "eac0ed8142bc9441bae46134c00142664e7501ea",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "morphp/medas-console": "^4",
+                "morphp/medas-core": "^4",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "morphp/medas-config-manager": "^3",
+                "morphp/medas-object-instantiator": "^4",
+                "morphp/medas-service-manager": "^4",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Medas\\ConsolePrinter\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Medas\\ConsolePrinterTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "Medas console printer",
+            "keywords": [
+                "console"
+            ],
+            "support": {
+                "source": "https://github.com/tarantuli/medas-console-printer/tree/v5.1.1",
+                "issues": "https://github.com/tarantuli/medas-console-printer/issues"
+            },
+            "time": "2026-09-04T09:27:55+00:00"
+        },
+        {
             "name": "morphp/medas-core",
             "version": "v4.7.0",
             "source": {
@@ -326,6 +379,56 @@
                 "issues": "https://github.com/tarantuli/medas-entity-manager/issues"
             },
             "time": "2026-10-12T13:16:52+00:00"
+        },
+        {
+            "name": "morphp/medas-events",
+            "version": "v3.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tarantuli/medas-events.git",
+                "reference": "a478ce3993e81fd336bd41cdc182f7fbf6f44a87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tarantuli/medas-events/zipball/a478ce3993e81fd336bd41cdc182f7fbf6f44a87",
+                "reference": "a478ce3993e81fd336bd41cdc182f7fbf6f44a87",
+                "shasum": ""
+            },
+            "require": {
+                "morphp/medas-core": "^4",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "morphp/medas-object-instantiator": "^4",
+                "morphp/medas-service-manager": "^4",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Medas\\Events\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Medas\\EventsTest\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Patrick Morpey",
+                    "email": "patrick@morphp.nl"
+                }
+            ],
+            "description": "PSR-14 event dispatcher for the Medas framework with lazy dispatch and attribute-based listener discovery",
+            "keywords": [
+                "events"
+            ],
+            "support": {
+                "source": "https://github.com/tarantuli/medas-events/tree/v3.1.7",
+                "issues": "https://github.com/tarantuli/medas-events/issues"
+            },
+            "time": "2026-10-12T13:12:38+00:00"
         },
         {
             "name": "morphp/medas-file-builder",

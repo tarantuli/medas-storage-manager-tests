@@ -15,8 +15,10 @@
   "require": {
     "morphp/medas-config-options": "^3",
     "morphp/medas-console": "^4",
+    "morphp/medas-console-printer": "^5",
     "morphp/medas-core": "^4",
     "morphp/medas-entity-manager": "^3",
+    "morphp/medas-events": "^3",
     "morphp/medas-migration-builder": "^1",
     "morphp/medas-ramsey-uuid-bridge": "^3",
     "php": "^8.4",

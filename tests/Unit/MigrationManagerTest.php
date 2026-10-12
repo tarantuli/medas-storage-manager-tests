@@ -59,7 +59,7 @@ class MigrationManagerTest extends BaseHappyPathTests
 
     private function migrate(): void
     {
-        $directory = realpath(__DIR__ . '/../TestMigrations');
+        $directory = realpath(__DIR__ . '/../../src/TestMigrations');
 
         service(MigrationManager::class)->migrate($directory);
     }
