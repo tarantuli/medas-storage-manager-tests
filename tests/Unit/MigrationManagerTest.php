@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Medas\StorageManagerTests\Unit;
 
-use Medas\StorageManager\Migrations\MigrationManager;
+use Medas\StorageManager\Migrations\{MigrationManager, MigrationStoreManager};
 use Medas\StorageManagerTests\TestMigrations\TestMigration;
 
 class MigrationManagerTest extends BaseHappyPathTests
 {
-    private const string MIGRATIONS_STORE = 'medas_migrations';
-
     public function testMigrationIsExecuted(): void
     {
         $this->migrate();
@@ -22,7 +20,7 @@ class MigrationManagerTest extends BaseHappyPathTests
     {
         $this->migrate();
 
-        $record = $this->db->findOne(self::MIGRATIONS_STORE, [
+        $record = $this->db->findOne($this->migrationsStore(), [
             'migration' => TestMigration::class,
         ]);
 
@@ -35,7 +33,7 @@ class MigrationManagerTest extends BaseHappyPathTests
         $this->migrate();
         $this->migrate();
 
-        $records = $this->db->find(self::MIGRATIONS_STORE, [
+        $records = $this->db->find($this->migrationsStore(), [
             'migration' => TestMigration::class,
         ]);
 
@@ -64,9 +62,15 @@ class MigrationManagerTest extends BaseHappyPathTests
         service(MigrationManager::class)->migrate($directory);
     }
 
+    // Whatever the migrations store is configured as: the default is not this test's to know.
+    private function migrationsStore(): string
+    {
+        return service(MigrationStoreManager::class)->store()->name();
+    }
+
     protected function setUpStores(): void
     {
-        $this->db->addStore(self::MIGRATIONS_STORE);
+        $this->db->addStore($this->migrationsStore());
     }
 
     protected function setUp(): void

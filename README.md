@@ -8,24 +8,24 @@ A reusable functional test suite for `medas-storage-manager` driver implementati
 
 **Test coverage by trait:**
 
-| Trait | What it covers |
-|---|---|
-| `DatabaseManagerTest` | Basic connectivity and store retrieval |
-| `EntityPersisterTest` | Create, read, update, delete; ID assignment; defaults; UUID auto-generation |
-| `HydratorTest` | Reconstructing entities from raw storage records |
-| `UnsortedTest` | Migration generation, execution, idempotency; low-level record insert/fetch; relation persistence |
-| `ConsoleCommandsTest` | `make:migration` and `migrate` console commands |
-| `DefaultValuesTest` | Nullable and non-nullable fields with and without defaults |
-| `UuidTest` | UUID primary keys and UUID-typed properties |
-| `TimestampsTest` | Automatic `createdAt` / `modifiedAt` population and update behaviour |
-| `EnumTest` | Int- and string-backed enum columns; rejection of unbacked enums |
-| `InheritanceTest` | Single-table and joined-table inheritance with `#[StoreOriginalEntityType]` |
-| `OneToManyRelationTest` | Foreign key storage and lazy hydration |
-| `ManyToManyRelationTest` | Pivot table creation, lazy collections, adding and removing related items |
-| `PropertyHandlerTest` | Migration generation for entities with custom `#[Handler]` properties |
-| `HandledPropertyTest` | Full persist-and-fetch cycle for custom-serialised properties |
+| Trait                    | What it covers                                                                                    |
+|--------------------------|---------------------------------------------------------------------------------------------------|
+| `DatabaseManagerTest`    | Basic connectivity and store retrieval                                                            |
+| `EntityPersisterTest`    | Create, read, update, delete; ID assignment; defaults; UUID auto-generation                       |
+| `HydratorTest`           | Reconstructing entities from raw storage records                                                  |
+| `UnsortedTest`           | Migration generation, execution, idempotency; low-level record insert/fetch; relation persistence |
+| `ConsoleCommandsTest`    | `make:migration` and `migrate` console commands                                                   |
+| `DefaultValuesTest`      | Nullable and non-nullable fields with and without defaults                                        |
+| `UuidTest`               | UUID primary keys and UUID-typed properties                                                       |
+| `TimestampsTest`         | Automatic `createdAt` / `modifiedAt` population and update behaviour                              |
+| `EnumTest`               | Int- and string-backed enum columns; rejection of unbacked enums                                  |
+| `InheritanceTest`        | Single-table and joined-table inheritance with `#[StoreOriginalEntityType]`                       |
+| `OneToManyRelationTest`  | Foreign key storage and lazy hydration                                                            |
+| `ManyToManyRelationTest` | Pivot table creation, lazy collections, adding and removing related items                         |
+| `PropertyHandlerTest`    | Migration generation for entities with custom `#[Handler]` properties                             |
+| `HandledPropertyTest`    | Full persist-and-fetch cycle for custom-serialised properties                                     |
 
-`Functional\AllTests` composes every trait for convenience.
+`Integration\AllTests` composes every trait for convenience.
 
 **Test fixture entities** live in `src/Entities/` grouped by feature area: timestamps, UUIDs, backed and unbacked enums, inheritance hierarchies, one-to-many and many-to-many relations, custom property handlers, and selector tests.
 
@@ -104,7 +104,7 @@ declare(strict_types=1);
 namespace YourVendor\YourDriver\Tests;
 
 use Medas\StorageManager\{Interfaces\Storage, Interfaces\StorageController, Interfaces\Store, StorageManager};
-use Medas\StorageManagerTests\Functional\AllTests;
+use Medas\StorageManagerTests\Integration\AllTests;
 use PHPUnit\Framework\TestCase;
 
 class FunctionalTest extends TestCase
@@ -158,7 +158,7 @@ class FunctionalTest extends TestCase
 **Using individual trait groups** — if your driver only supports a subset of features, pick only the relevant traits:
 
 ```php
-use Medas\StorageManagerTests\Functional\{
+use Medas\StorageManagerTests\Integration\{
     DatabaseManagerTest,
     EntityPersisterTest,
     UuidTest,
